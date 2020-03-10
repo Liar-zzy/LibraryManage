@@ -1,0 +1,44 @@
+[
+	{
+		"title": "查询",
+		"icon": "&#xe655;",
+
+		"href": "",
+
+		"spread": false,
+		"children": [
+			{
+				"title": "书籍信息查询",
+				"icon": "&#xe61c;",
+				"href": "page/xxx.jsp",
+				"spread": false
+			},
+			{
+				"title": "读者信息查询",
+				"icon": "&#xe609;",
+				"href": "page/xxx.jsp",
+				"spread": false
+			}
+		]
+	},
+	{
+		"title": "图书管理",
+		"icon": "&#xe634;",
+		"href": "",
+		"spread": false
+	},
+	{
+		"title": "用户管理",
+		"icon": "&#xe635;",
+		"href": "",
+		"spread": false
+	},
+	{
+		"title": "个人中心",
+		"icon": "&#xe630;",
+
+		"href": "page/user/userInfo.jsp",
+
+		"spread": false
+	}
+]
