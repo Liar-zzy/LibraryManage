@@ -116,18 +116,18 @@
 			element = layui.element;
 			$ = layui.$;
 	    	layer = parent.layer === undefined ? layui.layer : top.layer;
-	    	if(role=='学生')
+	    	if(role=='管理员') //注意 role需要进行修改
 			{
 				tab = layui.bodyTab({
 					openTabNum : "50",  //最大可打开窗口数量
-					url : "json/navs-student.json" //获取菜单json地址
+					url : "json/navs-manager.json" //获取菜单json地址
 				});
 			}
-	    	else if(role=='老师')
+	    	else if(role=='读者')
 			{
 				tab = layui.bodyTab({
 					openTabNum : "50",  //最大可打开窗口数量
-					url : "json/navs-teacher.json" //获取菜单json地址
+					url : "json/navs-stu.json" //获取菜单json地址
 				});
 			}
 	    	else{
