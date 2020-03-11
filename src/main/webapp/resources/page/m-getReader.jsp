@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>查询书籍</title>
+    <title>查询读者</title>
     <link rel="stylesheet" href="${webRoot}/resources/layui/css/layui.css" media="all"/>
     <script type="text/javascript" src="${webRoot}/resources/layui/layui.js"></script>
     <script type="text/javascript" src="${webRoot}/resources/jquery-3.4.1/jquery-3.4.1.js"></script>
@@ -41,7 +41,7 @@
     <fieldset class="layui-elem-field layui-field-title"
               style="margin-top: 20px;">
         <legend>
-            <h1 style="color: green">查询书籍</h1>
+            <h1 style="color: green">查询读者</h1>
         </legend>
     </fieldset>
 
@@ -49,7 +49,7 @@
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
-                    <p1 style="font-size:16px;">书名：</p1>
+                    <p1 style="font-size:16px;">姓名：</p1>
                 </label>
                 <div class="layui-input-inline">
                     <input class="layui-input" name="name" id="searchname">
@@ -73,30 +73,22 @@
     <thead>
     <tr>
         <th lay-data="{field:'1',align:'center'}">ISBN</th>
-        <th lay-data="{field:'2',align:'center',width:240}">书名</th>
-        <th lay-data="{field:'3',align:'center', sort: true,width:240}">作者</th>
-        <th lay-data="{field:'4',align:'center', sort: true,width:240}">种类</th>
-        <th lay-data="{field:'5',align:'center', sort: true,width:240}">价格</th>
-        <th lay-data="{field:'6',align:'center', sort: true,width:240}">出版社</th>
-        <th lay-data="{field:'7',align:'center', sort: true,width:240}">出版时间</th>
-        <th lay-data="{field:'8',align:'center', sort: true,width:240}">登记时间</th>
-        <th lay-data="{field:'9',align:'center', sort: true,width:240}">余量</th>
-        <!-- <th lay-data="{field:'11', toolbar:'#userBar' ,width:250,align:'center', fixed:'right'}">操作</th> -->
+        <th lay-data="{field:'2',align:'center',width:240}">Id</th>
+        <th lay-data="{field:'3',align:'center', sort: true,width:240}">姓名</th>
+        <th lay-data="{field:'4',align:'center', sort: true,width:240}">性别</th>
+        <th lay-data="{field:'5',align:'center', sort: true,width:240}">联系方式</th>
+        <th lay-data="{field:'6',align:'center', sort: true,width:240}">地址</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${RedList}" var="book">
+    <c:forEach items="${RedList}" var="user">
         <tr>
 
-            <td>${book.ISBN}</td>
-            <td>${book.name}</td>
-            <td>${book.author}</td>
-            <td>${book.type}</td>
-            <td>${book.price}</td>
-            <td>${book.publisher}</td>
-            <td>${book.publishTime}</td>
-            <td>${book.registerTime}</td>
-            <td>${book.groupCode}</td>
+            <td>${user.Id}</td>
+            <td>${user.name}</td>
+            <td>${user.gender}</td>
+            <td>${user.apartment}</td>
+            <td>${user.address}</td>
 
         </tr>
     </c:forEach>
