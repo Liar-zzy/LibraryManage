@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>读者管理</title>
+    <title>书籍管理</title>
     <script type="text/javascript" src="${webRoot}/resources/layui/layui.js"></script>
     <link rel="stylesheet" href="${webRoot}/resources/layui/css/layui.css">
     <script type="text/javascript" src="${webRoot}/resources/jquery-3.4.1/jquery-3.4.1.js"></script>
@@ -23,14 +23,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">Id</label>
             <div class="layui-input-inline">
-                <input type="text" id="Eid"   autocomplete="off" readonly="true">
+                <input type="text" id="Eid" autocomplete="off" readonly="true">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-inline">
-                <input type="text" id="Ename"   autocomplete="off" readonly="true">
+                <input type="text" id="Ename" autocomplete="off" readonly="true">
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             <div class="layui-input-block">
                 <select id="Egender" lay-filter="aihao">
                     <option value="0" selected="">男</option>
-                    <option value="1" >女</option>
+                    <option value="1">女</option>
                 </select>
             </div>
         </div>
@@ -47,14 +47,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">联系方式</label>
             <div class="layui-input-inline">
-                <input type="text" id="Etele"  placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" id="Etele" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">地址</label>
             <div class="layui-input-inline">
-                <input type="text" id="Eaddress"  placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" id="Eaddress" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
 
@@ -78,7 +78,7 @@
 
 
 <script>
-    function editUser(data) {
+    function openAddBook(data) {
         var $ = layui.jquery;
         var layer = layui.layer;
         var table = layui.table;//加载表格模块
@@ -87,52 +87,14 @@
         var obj = data;
         console.log(obj);
 
-        // layer.open({
-        //     type: 1,
-        //     title: '修改信息',
-        //     content: $("#editForm"),
-        //     area: ['400px', '200px'],
-        //     success: function (index) {
-        //         alert("修改成功");
-        //     }
-        // });
-
-        layui.use(['layer', 'form'], function () {
-            var layer = layui.layer
-                , form = layui.form
-                , $ = layui.jquery;
-
-            var active = {
-                input_submit: function () {
-                    layer.open({
-                        type: 1
-                        , offset: auto
-                        , content: '确定提交吗？'
-                        , btn: ['确定', '取消']
-                        , yes: function () {
-                            //使用 ajax 进行提交。 代码还未写出。
-
-                            
-
-                            layer.closeAll();
-                        },
-                        success: function (layero, index) {
-                            //直接设置某个id 的值
-                            $("#Eid").val(obj[1]);
-                            $('#Ename').val(obj[2]);
-                            $('#Egender').val(obj[2]);
-                            $('#Etele').val(obj[2]);
-                            $('#Eaddress').val(obj[2]);
-                        }
-                    });
-                }
-            };
-
-            $('#input_test').on('click', function () {
-                var othis = $(this), method = othis.data('method');
-                active[method] ? active[method].call(this, othis) : '';
-            });
-
+        layer.open({
+            type: 1,
+            title: '修改信息',
+            content: $("#saveOrUpdateDiv"),
+            area: ['400px', '200px'],
+            success: function (index) {
+                //alert("修改成功");
+            }
         });
     }
 </script>
@@ -142,21 +104,24 @@
     <fieldset class="layui-elem-field layui-field-title"
               style="margin-top: 20px;">
         <legend>
-            <h1 style="color: green">读者管理</h1>
+            <h1 style="color: green">书籍管理</h1>
         </legend>
     </fieldset>
     <form class="layui-form" action="/user/ListAllStu?name=#searchname">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
-                    <p1 style="font-size:16px;">姓名：</p1>
+                    <p1 style="font-size:16px;">书名：</p1>
                 </label>
                 <div class="layui-input-inline">
                     <input class="layui-input" name="name" id="searchname">
                 </div>
                 <input type="submit" class="layui-btn layui-btn-danger" value="查询">
-                <!-- <button type="button" class="layui-btn" lay-event="add" onclick="openAddUser()">添加学生</button> -->
 
+                <%--添加书籍功能还未书写--%>
+                <button type="button" class="layui-btn" lay-event="add" onclick="openAddBook()">
+                    添加书籍
+                </button>
             </div>
         </div>
     </form>
@@ -169,47 +134,124 @@
           <button type="button" class="layui-btn" lay-event="add" >添加用户</button>
     </div> -->
     <div id="userBar" style="display:none;">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </div>
     <thead>
     <tr>
-        <th lay-data="{field:'1',sort:true,align:'center'}">Id</th>
-        <th lay-data="{field:'2',align:'center'}">姓名</th>
-        <th lay-data="{field:'3',align:'center'}">性别</th>
-        <th lay-data="{field:'4',align:'center'}">联系方式</th>
-        <th lay-data="{field:'5',align:'center'}">地址</th>
-        <th lay-data="{field:'6', toolbar:'#userBar' ,width:200,align:'center', fixed:'right'}">操作</th>
+        <th lay-data="{field:'1',sort:true,align:'center'}">id</th>
+        <th lay-data="{field:'2',align:'center'}">书名</th>
+        <th lay-data="{field:'3',align:'center'}">ISBN</th>
+        <th lay-data="{field:'4',align:'center'}">作者</th>
+        <th lay-data="{field:'5',align:'center'}">种类</th>
+        <th lay-data="{field:'6',align:'center'}">价格</th>
+        <th lay-data="{field:'7',align:'center'}">出版人</th>
+        <th lay-data="{field:'8',align:'center'}">出版时间</th>
+        <th lay-data="{field:'9',align:'center'}">登记时间</th>
+        <th lay-data="{field:'10',align:'center'}">借阅状态</th>
+        <th lay-data="{field:'11', toolbar:'#userBar' ,width:200,align:'center', fixed:'right'}">操作</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${SESSION_STU}" var="user">
+    <c:forEach items="${bookList}" var="book">
         <tr>
-            <td>${user.Id}</td>
-            <td>${user.name}</td>
-            <td>${user.gender}</td>
-            <td>${user.apartment}</td>
-            <td>${user.address}</td>
+
+            <td>${book.id}</td>
+            <td>${book.name}</td>
+            <td>${book.ISBN}</td>
+            <td>${book.author}</td>
+            <td>${book.type}</td>
+            <td>${book.price}</td>
+            <td>${book.publisher}</td>
+            <td>${book.publishTime}</td>
+            <td>${book.registerTime}</td>
+            <td>${book.num}</td>
+
         </tr>
     </c:forEach>
     </tbody>
 </table>
 <!-- 数据表格结束 -->
+
 <!-- 添加和修改的弹出层开始 -->
-<div style="display: none;padding: 20px" id="editForm">
-    <form class="layui-form " action="" lay-filter="dataFrm" id="dataFrm">
+<div style="display: none;padding: 20px" id="saveOrUpdateDiv">
+    <form class="layui-form "
+          action="${pageContext.request.contextPath}/RedList/insertIntoRedList?id=#addId&name=#addName&isbn=#addIsbn&&&&&&&"
+          lay-filter="dataFrm" id="dataFrm">
         <div class="layui-form-item">
-            <label class="layui-form-label">重置密码：</label>
+            <label class="layui-form-label" style="color:red">id：</label>
             <div class="layui-input-inline">
-                <input type="text" name="1" autocomplete="off"
-                       class="layui-input">
+                <input type="text" name="num" id="addId" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">书名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addName" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">ISBN：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addIsbn" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">作者：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addAuthor" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">种类：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addType" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">价格：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addPrice" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">出版人：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="num" id="addPublisher" autocomplete="off"
+                       class="layui-input" value="150">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">出版时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="score" id="addPublishTime" autocomplete="off"
+                       class="layui-input" value="300">
             </div>
         </div>
 
+<%--        <div class="layui-form-item">--%>
+<%--            <label class="layui-form-label" style="color:red">登记时间：</label>--%>
+<%--            <div class="layui-input-inline">--%>
+<%--                <input type="text" name="score" id="score" autocomplete="off"--%>
+<%--                       class="layui-input" value="300">--%>
+<%--            </div>--%>
+<%--        </div>--%>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:red">借阅状态：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="score" id="addLendState" autocomplete="off"
+                       class="layui-input" value="300">
+            </div>
+        </div>
         <div class="layui-form-item" style="text-align: center;">
             <div class="layui-input-block">
-                <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm layui-icon layui-icon-release"
-                        lay-filter="doSubmit" lay-submit="">提交
+                <button type="submit" class="layui-btn layui-btn-normal
+		      layui-btn-sm layui-icon layui-icon-release" lay-filter="doSubmit">提交
                 </button>
                 <button type="reset" class="layui-btn layui-btn-warm layui-btn-sm layui-icon layui-icon-refresh">重置
                 </button>
@@ -217,7 +259,10 @@
         </div>
     </form>
 </div>
+
 <!-- 添加和修改的弹出层结束 -->
+
+
 <!-- 渲染数据表格 -->
 <script type="text/javascript">
     //静态表格
