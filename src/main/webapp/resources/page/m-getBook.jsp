@@ -72,15 +72,16 @@
     </div> -->
     <thead>
     <tr>
-        <th lay-data="{field:'1',align:'center'}">ISBN</th>
-        <th lay-data="{field:'2',align:'center',width:240}">书名</th>
-        <th lay-data="{field:'3',align:'center', sort: true,width:240}">作者</th>
-        <th lay-data="{field:'4',align:'center', sort: true,width:240}">种类</th>
-        <th lay-data="{field:'5',align:'center', sort: true,width:240}">价格</th>
-        <th lay-data="{field:'6',align:'center', sort: true,width:240}">出版社</th>
-        <th lay-data="{field:'7',align:'center', sort: true,width:240}">出版时间</th>
-        <th lay-data="{field:'8',align:'center', sort: true,width:240}">登记时间</th>
-        <th lay-data="{field:'9',align:'center', sort: true,width:240}">余量</th>
+        <th lay-data="{field:'1',sort:true,align:'center'}">id</th>
+        <th lay-data="{field:'2',align:'center'}">书名</th>
+        <th lay-data="{field:'3',align:'center'}">ISBN</th>
+        <th lay-data="{field:'4',align:'center'}">作者</th>
+        <th lay-data="{field:'5',align:'center'}">种类</th>
+        <th lay-data="{field:'6',align:'center'}">价格</th>
+        <th lay-data="{field:'7',align:'center'}">出版人</th>
+        <th lay-data="{field:'8',align:'center'}">出版时间</th>
+        <th lay-data="{field:'9',align:'center'}">登记时间</th>
+        <th lay-data="{field:'10',align:'center'}">借阅状态</th>
         <!-- <th lay-data="{field:'11', toolbar:'#userBar' ,width:250,align:'center', fixed:'right'}">操作</th> -->
     </tr>
     </thead>
@@ -88,8 +89,9 @@
     <c:forEach items="${RedList}" var="book">
         <tr>
 
-            <td>${book.ISBN}</td>
+            <td>${book.id}</td>
             <td>${book.name}</td>
+            <td>${book.ISBN}</td>
             <td>${book.author}</td>
             <td>${book.type}</td>
             <td>${book.price}</td>
