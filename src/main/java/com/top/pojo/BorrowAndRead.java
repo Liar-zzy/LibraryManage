@@ -2,7 +2,7 @@ package com.top.pojo;
 
 public class BorrowAndRead {
 
-    private String borrowBookISBN;
+    private String borrowBookId;
 
     private String borrowBookName;
 
@@ -12,12 +12,12 @@ public class BorrowAndRead {
 
     private String returnTime;
 
-    public String getBorrowBookISBN() {
-        return borrowBookISBN;
+    public String getBorrowBookId() {
+        return borrowBookId;
     }
 
-    public void setBorrowBookISBN(String borrowBookISBN) {
-        this.borrowBookISBN = borrowBookISBN;
+    public void setBorrowBookId(String borrowBookId) {
+        this.borrowBookId = borrowBookId;
     }
 
     public String getBorrowBookName() {

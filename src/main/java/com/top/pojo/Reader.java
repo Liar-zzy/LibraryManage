@@ -8,7 +8,7 @@ public class Reader {
 
     private String gender;
 
-    private String apartment;
+    private String tel;
 
     private String address;
 
@@ -36,12 +36,12 @@ public class Reader {
         this.gender = gender;
     }
 
-    public String getApartment() {
-        return apartment;
+    public String getTel() {
+        return tel;
     }
 
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getAddress() {
