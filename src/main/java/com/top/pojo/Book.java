@@ -1,7 +1,16 @@
 package com.top.pojo;
 
 public class Book {
-    private String ISBN;
+
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     private String name;
 
@@ -18,6 +27,8 @@ public class Book {
     private String registerTime;
 
     private boolean lendState;
+
+    private String ISBN;
 
     public String getISBN() {
         return ISBN;
