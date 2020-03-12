@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.top.mapper.BorrowAndReadMapper">
 
+    <insert id="insertARecord" parameterType="com.top.pojo.BorrowAndRead">
+        insert into borrowandread values (#{addRecord.borrowBookId}, #{addRecord.borrowBookName},
+        #{addRecord.borrowPersonId}, #{addRecord.lendTime}, #{param1.returnTime})
+    </insert>
+
+    <delete id="deleteARecord">
+         delete from borrowandread where borrowBookId = #{Bid} and borrowPersonId = #{Pid}
+    </delete>
+
 </mapper>

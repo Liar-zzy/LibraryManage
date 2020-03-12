@@ -8,6 +8,8 @@ public class Reader {
 
     private String gender;
 
+    private String registerDate;
+
     private String tel;
 
     private String address;
@@ -34,6 +36,14 @@ public class Reader {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(String registerDate) {
+        this.registerDate = registerDate;
     }
 
     public String getTel() {

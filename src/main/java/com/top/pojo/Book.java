@@ -4,14 +4,6 @@ public class Book {
 
     private String id;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     private String name;
 
     private String author;
@@ -30,6 +22,14 @@ public class Book {
 
     private String ISBN;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public String getISBN() {
         return ISBN;
     }
