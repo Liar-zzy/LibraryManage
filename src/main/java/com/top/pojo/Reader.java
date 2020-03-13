@@ -4,6 +4,8 @@ public class Reader {
 
     private String Id;
 
+    private String password;
+
     private String name;
 
     private String gender;
@@ -20,6 +22,14 @@ public class Reader {
 
     public void setId(String id) {
         Id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
