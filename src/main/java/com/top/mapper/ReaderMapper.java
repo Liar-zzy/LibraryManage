@@ -26,5 +26,4 @@ public interface ReaderMapper {
      * 查询读者信息
      * */
     Reader getAReader(@Param("getReader")String rid);
-
 }
