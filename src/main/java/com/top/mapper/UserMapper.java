@@ -22,7 +22,7 @@ public interface UserMapper {
     /**
      * 修改User信息
      * */
-    int modifyAUser(@Param("modifyUser") User user);
+    int updateAUser(@Param("modifyUser") User user);
 
     /**
      * 查询User信息
