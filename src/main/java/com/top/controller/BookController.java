@@ -129,9 +129,7 @@ public class BookController {
         }
 
         for(int i=0;i<bookList.size();i++){
-            System.out.println("ID : "+bookList.get(i).getId());
-            System.out.println("  Name : "+bookList.get(i).getName());
-            System.out.println("  ISBN : "+bookList.get(i).getIsbn());
+            System.out.println(bookList.get(i).toString());
         }
 
         System.out.println("用户角色  :  " + user.getRole());

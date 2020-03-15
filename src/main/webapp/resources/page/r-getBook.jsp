@@ -47,7 +47,7 @@
             <h1 style="color: green">书籍管理</h1>
         </legend>
     </fieldset>
-    <form class="layui-form" action="/user/ListAllStu?name=#searchname">
+    <form class="layui-form" action="/resources/book/?name=#searchname">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
@@ -108,10 +108,10 @@
             <td>${book.registerTime}</td>
                 <%--            <td>${book.lendState}</td>--%>
 
-            <c:if test="${isLend == '1'}">
+            <c:if test="${isLend == true}">
                 <td>已被借阅</td>
             </c:if>
-            <c:if test="${isLend != '1'}">
+            <c:if test="${isLend == false}">
                 <td>可借阅</td>
             </c:if>
 
@@ -134,7 +134,7 @@
         table.init('demo', {
             id: 'demo'
             , height: 'full-300' //设置高度
-            , page: trues//开启分页
+            , page: true//开启分页
             , toolbar: '#userToolBar'
 
         });
