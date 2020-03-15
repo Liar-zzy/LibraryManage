@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean UpdateUser(User user) {
-        int row = userMapper.modifyAUser(user);
+        int row = userMapper.updateAUser(user);
         return row == 1 ? true : false;
     }
 

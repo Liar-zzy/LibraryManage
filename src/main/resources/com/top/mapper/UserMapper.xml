@@ -3,7 +3,6 @@
 <mapper namespace="com.top.mapper.UserMapper">
 
     <insert id="addAUser" parameterType="com.top.pojo.User">
-
         insert into user values (#{addUser.id}, #{addUser.password}, #{addUser.name}, #{addUser.gender},
         #{addUser.tel}, #{addUser.address}, #{addUser.role})
     </insert>
@@ -12,10 +11,10 @@
         delete from user where id = #{deleteUser}
     </delete>
 
-    <update id="modifyAUser" parameterType="com.top.pojo.User">
+    <update id="updateAUser" parameterType="com.top.pojo.User">
         update user
         <set>
-            <if test="modifyUserUser.password != null and modifyUser.password != ''">
+            <if test="modifyUser.password != null and modifyUser.password != ''">
                 password = #{modifyUser.password},
             </if>
 
@@ -31,7 +30,7 @@
                 tel = #{modifyUser.tel},
             </if>
 
-            <if test="modifyUser.address != null and modifyUserUser.address != ''">
+            <if test="modifyUser.address != null and modifyUser.address != ''">
                 address = #{modifyUser.address}
             </if>
 
@@ -46,13 +45,11 @@
     </update>
 
     <select id="getAUser" parameterType="String" resultType="com.top.pojo.User">
-
         select * from user where id = #{getUser}
     </select>
 
     <select id="getAllUser" resultType="com.top.pojo.User">
-        select * from user where role = 0
-
+        select * from user where role = '0'
     </select>
 
 </mapper>
