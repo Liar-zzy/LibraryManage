@@ -99,7 +99,7 @@ public class ManagerController {
     /**
      * 修改管理员信息
      * */
-    @RequestMapping("/updateReader")
+    @RequestMapping("/updateManager")
     @ResponseBody
     public Map<String,String> updateManager(@RequestBody Manager manager){
         System.out.println("update A manager ");
