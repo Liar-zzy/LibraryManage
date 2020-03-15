@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 读者登录
+     * 登录
      * */
     @RequestMapping("/login")
     @ResponseBody
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     /**
-     * 添加读者
+     * 添加用户
      */
     @RequestMapping("/addUser")
     @ResponseBody
@@ -69,7 +69,7 @@ public class UserController {
     }
 
     /**
-     * 删除读者
+     * 删除用户
      * */
     @RequestMapping("/deleteUser")
     @ResponseBody
