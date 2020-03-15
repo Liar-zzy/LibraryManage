@@ -12,10 +12,10 @@
         delete from user where id = #{deleteUser}
     </delete>
 
-    <update id="modifyAUser" parameterType="com.top.pojo.User">
+    <update id="updateAUser" parameterType="com.top.pojo.User">
         update user
         <set>
-            <if test="modifyUserUser.password != null and modifyUser.password != ''">
+            <if test="modifyUser.password != null and modifyUser.password != ''">
                 password = #{modifyUser.password},
             </if>
 
@@ -31,7 +31,7 @@
                 tel = #{modifyUser.tel},
             </if>
 
-            <if test="modifyUser.address != null and modifyUserUser.address != ''">
+            <if test="modifyUser.address != null and modifyUser.address != ''">
                 address = #{modifyUser.address}
             </if>
 

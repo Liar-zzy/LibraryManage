@@ -19,13 +19,11 @@ public class User {
     private String role;
 
     public String getId() {
-
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-
     }
 
     public String getPassword() {
