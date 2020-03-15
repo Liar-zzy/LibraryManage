@@ -94,14 +94,16 @@ public class BorrowAndReadController {
     }
 
     /**
-     * 查询借阅信息
+     * 查询个人借阅信息
      * */
     @RequestMapping("/inquireBorrowAndRead")
     @ResponseBody
     public Map<String, String> inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
         Map<String, String> map = new HashMap<>();
         System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
-                +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
+
+        +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
+
         User user = (User) session.getAttribute("SESSION_USER");
 
         List<BorrowAndRead> borrowAndReadList = borrowAndReadService.InquireBorrowAndRead(user.getId());
@@ -119,4 +121,30 @@ public class BorrowAndReadController {
         return map;
     }
 
+
+    /**
+     * 查询所有借阅信息
+     * */
+    @RequestMapping("/inquireAllBorrowAndRead")
+    @ResponseBody
+    public Map<String, String> inquireAllBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
+        Map<String, String> map = new HashMap<>();
+
+        User user = (User) session.getAttribute("SESSION_USER");
+
+        List<BorrowAndRead> AllBorrowAndReadList = borrowAndReadService.InquireAllBorrowAndRead();
+
+        if (AllBorrowAndReadList != null) {
+            System.out.println("inquire AllBorrowAndReadList success");
+
+            session.setAttribute("AllBorrowAndReadList", AllBorrowAndReadList);
+
+            map.put("inquireAllBorrowAndReadList", "success");
+        } else {
+            System.out.println("inquire All!!BorrowAndReadList failure");
+            map.put("inquireAllBorrowAndReadList", "failure");
+        }
+        return map;
+    }
 }
+

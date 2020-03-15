@@ -2,7 +2,9 @@ package com.top.pojo;
 
 public class User {
 
+
     private String id;
+
 
     private String password;
 
@@ -17,11 +19,13 @@ public class User {
     private String role;
 
     public String getId() {
+
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+
     }
 
     public String getPassword() {
@@ -71,4 +75,6 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
+

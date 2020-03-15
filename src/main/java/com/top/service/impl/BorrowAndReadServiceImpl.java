@@ -31,4 +31,10 @@ public class BorrowAndReadServiceImpl implements BorrowAndReadService {
         List<BorrowAndRead> list = borrowAndReadMapper.inquireBorrowAndRead(Pid);
         return list;
     }
+
+    @Override
+    public List<BorrowAndRead> InquireAllBorrowAndRead() {
+        List<BorrowAndRead> list = borrowAndReadMapper.inquireAllBorrowAndRead();
+        return list;
+    }
 }

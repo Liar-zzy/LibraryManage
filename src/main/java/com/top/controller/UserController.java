@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+
+import java.util.List;
+
 import java.util.Map;
 
 @Controller
@@ -22,7 +25,9 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 登录
+
+     * User登录
+
      * */
     @RequestMapping("/login")
     @ResponseBody
@@ -47,7 +52,9 @@ public class UserController {
     }
 
     /**
-     * 添加用户
+
+     * 添加User
+
      */
     @RequestMapping("/addUser")
     @ResponseBody
@@ -69,7 +76,10 @@ public class UserController {
     }
 
     /**
-     * 删除用户
+
+     * 删除User
+
+
      * */
     @RequestMapping("/deleteUser")
     @ResponseBody
@@ -93,7 +103,9 @@ public class UserController {
     }
 
     /**
-     * 修改读者信息
+
+     * 修改User
+
      * */
     @RequestMapping("/updateUser")
     @ResponseBody
@@ -115,4 +127,31 @@ public class UserController {
         return map;
     }
 
+
+    /**
+     * 查询所有读者
+     * */
+    @RequestMapping("/inquireAllReader")
+    @ResponseBody
+    public Map<String, String> inquireAllBorrowAndRead(@RequestBody User user, HttpSession session) {
+
+        Map<String, String> map = new HashMap<>();
+
+        List<User> AllUserList = userService.getAllUser();
+
+        if (AllUserList != null) {
+            System.out.println("inquire AllUserList success");
+
+            session.setAttribute("AllUserList", AllUserList);
+
+            map.put("AllUserList", "success");
+        } else {
+            System.out.println("inquire AllUserList failure");
+            map.put("AllUserList", "failure");
+        }
+        return map;
+    }
+
+
 }
+

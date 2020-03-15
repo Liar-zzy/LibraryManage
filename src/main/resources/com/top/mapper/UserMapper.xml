@@ -3,52 +3,56 @@
 <mapper namespace="com.top.mapper.UserMapper">
 
     <insert id="addAUser" parameterType="com.top.pojo.User">
-        insert into reader values (#{addReader.id}, #{addReader.password}, #{addReader.name}, #{addReader.gender},
-        #{addReader.registerDate}, #{addReader.tel}, #{addReader.address})
+
+        insert into user values (#{addUser.id}, #{addUser.password}, #{addUser.name}, #{addUser.gender},
+        #{addUser.tel}, #{addUser.address}, #{addUser.role})
     </insert>
 
     <delete id="deleteAUser" parameterType="String">
-        delete from reader where id = #{deleteReader}
+        delete from user where id = #{deleteUser}
     </delete>
 
     <update id="modifyAUser" parameterType="com.top.pojo.User">
-        update reader
+        update user
         <set>
-            <if test="modifyReader.password != null and modifyReader.password != ''">
-                password = #{modifyReader.password},
+            <if test="modifyUserUser.password != null and modifyUser.password != ''">
+                password = #{modifyUser.password},
             </if>
 
-            <if test="modifyReader.name != null and modifyReader.name != ''">
-                name = #{modifyReader.name},
+            <if test="modifyUser.name != null and modifyUser.name != ''">
+                name = #{modifyUser.name},
             </if>
 
-            <if test="modifyReader.gender != null and modifyReader.gender != ''">
-                gender = #{modifyReader.gender},
+            <if test="modifyUser.gender != null and modifyUser.gender != ''">
+                gender = #{modifyUser.gender},
             </if>
 
-            <if test="modifyReader.registerDate != null and modifyReader.registerDate != ''">
-                registerDate = #{modifyReader.registerDate},
+            <if test="modifyUser.tel != null and modifyUser.tel != ''">
+                tel = #{modifyUser.tel},
             </if>
 
-            <if test="modifyReader.tel != null and modifyReader.tel != ''">
-                tel = #{modifyReader.tel},
+            <if test="modifyUser.address != null and modifyUserUser.address != ''">
+                address = #{modifyUser.address}
             </if>
 
-            <if test="modifyReader.address != null and modifyReader.address != ''">
-                address = #{modifyReader.address}
+            <if test="modifyUser.role != null and modifyUser.role != ''">
+                role = #{modifyUser.role},
             </if>
         </set>
         <where>
-            id = #{modifyReader.id}
+            id = #{modifyUser.id}
+
         </where>
     </update>
 
     <select id="getAUser" parameterType="String" resultType="com.top.pojo.User">
-        select * from reader where id = #{getReader}
+
+        select * from user where id = #{getUser}
     </select>
 
-    <select id="getAllUser" parameterType="String" resultType="com.top.pojo.User">
-        select * from reader
+    <select id="getAllUser" resultType="com.top.pojo.User">
+        select * from user where role = 0
+
     </select>
 
 </mapper>

@@ -98,7 +98,9 @@
 
 		}
 		$.ajax({
+
 			url:'${ctx}/user/updateUser',
+
 			type:'post',
 			contentType:'application/json',
 			data:JSON.stringify(alteredObj),

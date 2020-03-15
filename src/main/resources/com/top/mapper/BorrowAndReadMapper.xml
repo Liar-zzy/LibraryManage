@@ -15,4 +15,8 @@
         select * from borrowandread where borrowPersonId = #{Pid};
     </select>
 
+    <select id="inquireAllBorrowAndRead" resultType="com.top.pojo.BorrowAndRead">
+        select * from borrowandread;
+    </select>
+
 </mapper>
