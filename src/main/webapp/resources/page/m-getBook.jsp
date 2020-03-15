@@ -92,7 +92,7 @@
 
             <td>${book.id}</td>
             <td>${book.name}</td>
-            <td>${book.ISBN}</td>
+            <td>${book.isbn}</td>
             <td>${book.author}</td>
             <td>${book.type}</td>
             <td>${book.price}</td>

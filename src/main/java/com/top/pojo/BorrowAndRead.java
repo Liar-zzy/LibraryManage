@@ -51,4 +51,15 @@ public class BorrowAndRead {
     public void setReturnTime(String returnTime) {
         this.returnTime = returnTime;
     }
+
+    @Override
+    public String toString() {
+        return "BorrowAndRead{" +
+                "borrowBookId='" + borrowBookId + '\'' +
+                ", borrowBookName='" + borrowBookName + '\'' +
+                ", borrowPersonId='" + borrowPersonId + '\'' +
+                ", lendTime='" + lendTime + '\'' +
+                ", returnTime='" + returnTime + '\'' +
+                '}';
+    }
 }

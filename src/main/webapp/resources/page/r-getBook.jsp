@@ -70,7 +70,7 @@
 
 <!-- 数据表格开始 -->
 <table lay-filter="demo" id="demo">
-    <div id="userToolBar" style="display:none;">
+    <div id="userToolBar" name="userToolBar" style="display:none">
         <button type="button" class="layui-btn" lay-event="borrow">借阅</button>
     </div>
     <%--    <div id="userBar" style="display:none;">--%>
@@ -78,37 +78,35 @@
     <%--    </div>--%>
     <thead>
     <tr>
-        <th lay-data="{field:'1',radio:true,align:'center'}"></th>
-        <th lay-data="{field:'2',sort:true,align:'center'}">id</th>
-        <th lay-data="{field:'3',align:'center'}">书名</th>
-        <th lay-data="{field:'4',align:'center'}">ISBN</th>
-        <th lay-data="{field:'5',align:'center'}">作者</th>
-        <th lay-data="{field:'6',align:'center'}">种类</th>
-        <th lay-data="{field:'7',align:'center'}">价格</th>
-        <th lay-data="{field:'8',align:'center'}">出版人</th>
-        <th lay-data="{field:'9',align:'center'}">出版时间</th>
-        <th lay-data="{field:'10',align:'center'}">登记时间</th>
-        <th lay-data="{field:'11',align:'center'}">借阅状态</th>
+        <th lay-data="{checkbox:true ,fixed:'left'}"></th>
+        <th lay-data="{field:'id',align:'center'}">ID</th>
+        <th lay-data="{field:'name',align:'center'}">书名</th>
+        <th lay-data="{field:'isbn',align:'center'}">ISBN</th>
+        <th lay-data="{field:'author',align:'center'}">作者</th>
+        <th lay-data="{field:'type',align:'center'}">种类</th>
+        <th lay-data="{field:'price',align:'center'}">价格</th>
+        <th lay-data="{field:'publisher',align:'center'}">出版社</th>
+        <th lay-data="{field:'publishTime',align:'center'}">出版时间</th>
+        <th lay-data="{field:'registerTime',align:'center'}">登记时间</th>
+        <th lay-data="{field:'lendState',align:'center'}">借阅状态</th>
         <%--        <th lay-data="{field:'11', toolbar:'#userBar' ,width:200,align:'center', fixed:'right'}">操作</th>--%>
     </tr>
     </thead>
     <tbody>
-<%--    <jsp:useBean id="bookList" scope="session" type="com.top.pojo.Book"/>--%>
-<%--    <c:set var="isLend" scope="session" value="${bookList.lendState}"/>--%>
     <c:forEach items="${SESSION_BOOK}" var="book">
         <c:set var="isLend" scope="session" value="${book.lendState}"/>
         <tr>
-
+            <td></td>
             <td>${book.id}</td>
             <td>${book.name}</td>
-            <td>${book.ISBN}</td>
+            <td>${book.isbn}</td>
             <td>${book.author}</td>
             <td>${book.type}</td>
             <td>${book.price}</td>
             <td>${book.publisher}</td>
             <td>${book.publishTime}</td>
             <td>${book.registerTime}</td>
-<%--            <td>${book.lendState}</td>--%>
+                <%--            <td>${book.lendState}</td>--%>
 
             <c:if test="${isLend == '1'}">
                 <td>已被借阅</td>
@@ -132,36 +130,37 @@
         var table = layui.table;//加载表格模块
         var form = layui.form;
 
+
         table.init('demo', {
             id: 'demo'
-            , height: 'funll-300' //设置高度
-            , page: true//开启分页
+            , height: 'full-300' //设置高度
+            , page: trues//开启分页
             , toolbar: '#userToolBar'
 
         });
 
         //监听头部工具栏事件
-        table.on("toolbar(userToolBar)", function (obj) {
+        table.on("toolbar(demo)", function (obj) {
             var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
             var data = checkStatus.data;  //获取选中行数据
 
-            if (obj.event === 'borrow') {
+            if (obj.event == 'borrow') {
                 console.log("borrow");
                 console.log(data);
-                var borrowBookId = data[1];
-                var borrowBookName = data[2];
+                var borrowBookId = data[0].id;
+                var borrowBookName = data[0].name;
                 var alterObj = {
                     borrowBookId: borrowBookId,
                     borrowBookName: borrowBookName
                 };
                 $.ajax({
-                    url: '${ctx}/borrowAndRead/addBorrowAndRead',
+                    url: '${ctx}/resources/borrowAndRead/addBorrowAndRead',
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(alterObj),
                     success: function (databack) {
                         console.log(databack);
-                        if (databack.deleteUser == "success") {
+                        if (databack.add == "success") {
                             layer.msg("借阅成功")
                         }
                         setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
@@ -171,87 +170,6 @@
                 })
             }
         });
-
-        //监听行工具事件
-        table.on('tool(demo)', function (obj) {
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            if (layEvent === 'borrow') { //删除
-
-                //layer.msg("删除");
-                console.log(data);
-
-                var borrowBookId = data[1];
-                var borrowBookName = data[2];
-
-                var alterObj = {
-                    borrowBookId: borrowBookId,
-                    borrowBookName: borrowBookName
-                };
-
-                $.ajax({
-                    url: '${ctx}/borrowAndRead/addBorrowAndRead',
-                    type: 'post',
-                    contentType: 'application/json',
-                    data: JSON.stringify(alterObj),
-                    success: function (databack) {
-                        console.log(databack);
-                        if (databack.deleteUser == "success") {
-                            layer.msg("借阅成功")
-                        }
-                        setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
-                            window.location.reload();//页面刷新
-                        }, 2000);
-                    }
-                })
-            }
-        });
-
-        var url;
-        var mainIndex;
-
-
-        //打开修改页面
-        function openUpdateUser(data) {
-
-            mainIndex = layer.open({
-                type: 1,
-                title: '修改密码',
-                content: $("#saveOrUpdateDiv"),
-                area: ['400px', '200px'],
-                success: function (index) {
-                    //alert("ok");
-                    form.val("dataFrm", data);
-                    url = "/market_3x/UserServlet?type=update";
-                }
-            });
-        }
-
-        //保存
-        form.on("submit(doSubmit)", function (obj) {
-
-            //alert(url);
-            //这是没得办法，url传不过来
-            if (typeof (url) == "undefined") {
-                url = "";
-            }
-            //alert(url);
-            //序列化表单数据
-            var params = $("#dataFrm").serialize();
-            $.post(url, params, function (obj) {
-                //alert(params);
-                //layer.msg(obj);
-                //alert(params);
-                //关闭弹出层
-                layer.close(mainIndex);
-                //刷新数据 表格
-                window.location.href = "/market_3x/UserServlet?type=goUser";
-                return false;
-
-            })
-        });
-
-
     });
 
 </script>
