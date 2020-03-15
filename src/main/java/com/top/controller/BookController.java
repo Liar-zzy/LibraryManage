@@ -104,7 +104,7 @@ public class BookController {
     @ResponseBody
     public Map<String, String> inquireBook(@RequestBody Book book, HttpSession session) {
         Map<String, String> map = new HashMap<>();
-        System.out.println("传入的 Reader Id :   " + book.getId());
+        System.out.println("传入的 Book Id :   " + book.getId());
 
         book = bookService.GetBook(book.getId());
 

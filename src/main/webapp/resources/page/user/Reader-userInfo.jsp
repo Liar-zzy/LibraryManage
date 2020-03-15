@@ -98,7 +98,7 @@
 
 		}
 		$.ajax({
-			url:'${ctx}/reader/updateReader',
+			url:'${ctx}/user/updateReader',
 			type:'post',
 			contentType:'application/json',
 			data:JSON.stringify(alteredObj),

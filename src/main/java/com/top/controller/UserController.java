@@ -1,7 +1,7 @@
 package com.top.controller;
 
-import com.top.pojo.Reader;
-import com.top.service.ReaderService;
+import com.top.pojo.User;
+import com.top.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,27 +15,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/reader")
-public class ReaderController {
+@RequestMapping("/User")
+public class UserController {
 
     @Autowired
-    private ReaderService readerService;
+    private UserService userService;
 
     /**
      * 读者登录
      * */
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String, String> login(@RequestBody Reader reader, HttpSession session) {
+    public Map<String, String> login(@RequestBody User user, HttpSession session) {
         Map<String, String> map = new HashMap<>();
-        System.out.println("传入的 Reader Id :   " + reader.getId() + "  password: " + reader.getPassword());
+        System.out.println("传入的 User Id :   " + user.getId() + "  password: " + user.getPassword());
 
-        reader = readerService.GetReader(reader.getId());
+        user = userService.GetUser(user.getId());
 
-        if (reader != null) {
+        if (user != null) {
             System.out.println("login success");
 
-            session.setAttribute("SESSION_USER", reader);
+            session.setAttribute("SESSION_USER", user);
 
             map.put("logincheck", "success");
 
@@ -49,25 +49,21 @@ public class ReaderController {
     /**
      * 添加读者
      */
-    @RequestMapping("/addReader")
+    @RequestMapping("/addUser")
     @ResponseBody
-    public Map<String,String> addReader(@RequestBody Reader reader){
-
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        reader.setRegisterDate((sdf.format(date)));
-
+    public Map<String,String> addUser(@RequestBody User user){
+        
         boolean success;
         Map<String, String > map = new HashMap<>();
-        success = readerService.AddReader(reader);
+        success = userService.AddUser(user);
 
         if(success == true) {
             map.put("add","success");
-            System.out.println("add Reader success");
+            System.out.println("add User success");
         }
         else {
             map.put("add","fail");
-            System.out.println("add Reader fail");
+            System.out.println("add User fail");
         }
         return map;
     }
@@ -75,23 +71,23 @@ public class ReaderController {
     /**
      * 删除读者
      * */
-    @RequestMapping("/deleteReader")
+    @RequestMapping("/deleteUser")
     @ResponseBody
-    public Map<String,String> deleteReader(@RequestBody Reader reader){
-        System.out.println("delete A Reader ");
-        System.out.println(reader.getName());
+    public Map<String,String> deleteUser(@RequestBody User user){
+        System.out.println("delete A User ");
+        System.out.println(user.getName());
 
         boolean success;
-        success = readerService.DeleteReader(reader.getId());
+        success = userService.DeleteUser(user.getId());
 
         Map<String, String > map = new HashMap<>();
         if(success){
             map.put("delete","success");
-            System.out.println("delete Reader success");
+            System.out.println("delete User success");
         }
         else{
             map.put("delete","success");
-            System.out.println("delete Reader fail");
+            System.out.println("delete User fail");
         }
         return map;
     }
@@ -99,22 +95,22 @@ public class ReaderController {
     /**
      * 修改读者信息
      * */
-    @RequestMapping("/updateReader")
+    @RequestMapping("/updateUser")
     @ResponseBody
-    public Map<String,String> updateReader(@RequestBody Reader reader){
-        System.out.println("update A Reader ");
-        System.out.println(reader.getId() + reader.getName());
+    public Map<String,String> updateUser(@RequestBody User user){
+        System.out.println("update A User ");
+        System.out.println(user.getId() + user.getName());
 
         boolean success;
-        success = readerService.UpdateReader(reader);
+        success = userService.UpdateUser(user);
         Map<String, String > map = new HashMap<>();
 
         if(success == true) {
             map.put("update","success");
-            System.out.println("update reader success");
+            System.out.println("update user success");
         } else {
             map.put("update","fail");
-            System.out.println("update reader fail");
+            System.out.println("update user fail");
         }
         return map;
     }

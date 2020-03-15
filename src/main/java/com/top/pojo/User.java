@@ -1,6 +1,6 @@
 package com.top.pojo;
 
-public class Reader {
+public class User {
 
     private String Id;
 
@@ -10,11 +10,11 @@ public class Reader {
 
     private String gender;
 
-    private String registerDate;
-
     private String tel;
 
     private String address;
+
+    private String role;
 
     public String getId() {
         return Id;
@@ -48,12 +48,12 @@ public class Reader {
         this.gender = gender;
     }
 
-    public String getRegisterDate() {
-        return registerDate;
+    public String getRole() {
+        return role;
     }
 
-    public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getTel() {
