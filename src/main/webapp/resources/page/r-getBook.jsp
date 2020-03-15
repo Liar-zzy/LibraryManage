@@ -78,17 +78,17 @@
     <%--    </div>--%>
     <thead>
     <tr>
-        <th lay-data="{radio:true,align:'center'}"></th>
-        <th lay-data="{field:'1',sort:true,align:'center'}">id</th>
-        <th lay-data="{field:'2',align:'center'}">书名</th>
-        <th lay-data="{field:'3',align:'center'}">ISBN</th>
-        <th lay-data="{field:'4',align:'center'}">作者</th>
-        <th lay-data="{field:'5',align:'center'}">种类</th>
-        <th lay-data="{field:'6',align:'center'}">价格</th>
-        <th lay-data="{field:'7',align:'center'}">出版人</th>
-        <th lay-data="{field:'8',align:'center'}">出版时间</th>
-        <th lay-data="{field:'9',align:'center'}">登记时间</th>
-        <th lay-data="{field:'10',align:'center'}">借阅状态</th>
+        <th lay-data="{field:'1',radio:true,align:'center'}"></th>
+        <th lay-data="{field:'2',sort:true,align:'center'}">id</th>
+        <th lay-data="{field:'3',align:'center'}">书名</th>
+        <th lay-data="{field:'4',align:'center'}">ISBN</th>
+        <th lay-data="{field:'5',align:'center'}">作者</th>
+        <th lay-data="{field:'6',align:'center'}">种类</th>
+        <th lay-data="{field:'7',align:'center'}">价格</th>
+        <th lay-data="{field:'8',align:'center'}">出版人</th>
+        <th lay-data="{field:'9',align:'center'}">出版时间</th>
+        <th lay-data="{field:'10',align:'center'}">登记时间</th>
+        <th lay-data="{field:'11',align:'center'}">借阅状态</th>
         <%--        <th lay-data="{field:'11', toolbar:'#userBar' ,width:200,align:'center', fixed:'right'}">操作</th>--%>
     </tr>
     </thead>
@@ -111,10 +111,10 @@
 <%--            <td>${book.lendState}</td>--%>
 
             <c:if test="${isLend == '1'}">
-                已被借阅
+                <td>已被借阅</td>
             </c:if>
             <c:if test="${isLend != '1'}">
-                可借阅
+                <td>可借阅</td>
             </c:if>
 
         </tr>
@@ -140,7 +140,7 @@
 
         });
 
-        监听头部工具栏事件
+        //监听头部工具栏事件
         table.on("toolbar(userToolBar)", function (obj) {
             var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
             var data = checkStatus.data;  //获取选中行数据

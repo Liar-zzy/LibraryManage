@@ -110,7 +110,7 @@
 
 		var role='${sessionScope.SESSION_USER.role}';
 
-		console.log(id)
+		console.log(role)
 
 		//通过role决定使用哪一个 json
 

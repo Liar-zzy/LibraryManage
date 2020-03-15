@@ -3,7 +3,6 @@
 <% String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="webRoot" value="<%=basePath%>"/>
 <!DOCTYPE html>
 <html>
@@ -81,13 +80,13 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${RedList}" var="user">
+    <c:forEach items="${AllUserList}" var="user">
         <tr>
 
-            <td>${user.Id}</td>
+            <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.gender}</td>
-            <td>${user.apartment}</td>
+            <td>${user.tel}</td>
             <td>${user.address}</td>
 
         </tr>

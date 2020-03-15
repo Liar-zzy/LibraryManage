@@ -6,6 +6,8 @@ import com.top.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("BookService")
 public class BookServiceImpl implements BookService {
 
@@ -34,6 +36,12 @@ public class BookServiceImpl implements BookService {
     public Book GetBook(String Bid) {
         Book book = bookMapper.getABook(Bid);
         return book;
+    }
+
+    @Override
+    public List<Book> GetAllBook() {
+        List<Book> bookList = bookMapper.getAllBook();
+        return bookList;
     }
 
 

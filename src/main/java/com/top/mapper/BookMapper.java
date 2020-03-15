@@ -4,6 +4,8 @@ import com.top.pojo.Book;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BookMapper {
 
@@ -26,5 +28,10 @@ public interface BookMapper {
      * 查询图书信息
      * */
     Book getABook(@Param("getBook")String Bid);
+
+    /**
+     * 查询所有图书信息
+     * */
+    List<Book> getAllBook();
 
 }
