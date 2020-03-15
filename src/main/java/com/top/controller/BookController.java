@@ -100,7 +100,7 @@ public class BookController {
     /**
      * 查询图书
      * */
-    @RequestMapping("/inquireBook")
+    @RequestMapping("/m-inquireBook")
     @ResponseBody
     public Map<String, String> inquireBook(@RequestBody Book book, HttpSession session) {
         Map<String, String> map = new HashMap<>();

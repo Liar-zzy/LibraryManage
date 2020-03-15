@@ -108,34 +108,32 @@
 	})
 	layui.use(['bodyTab','form','element','layer','jquery'],function(){
 
-		var role='${sessionScope.SESSION_USER.role}';
+		var id='${sessionScope.SESSION_USER.id}';
 
-		console.log(role)
+		console.log(id)
+
+		var role = id.indexOf('s');
+		//是否以s开头
+
 
 		var form = layui.form,
 			element = layui.element;
 			$ = layui.$;
 	    	layer = parent.layer === undefined ? layui.layer : top.layer;
-	    	if(role=='管理员') //注意 role需要进行修改
+	    	if(role==1) //注意 role需要进行修改
 			{
 				tab = layui.bodyTab({
 					openTabNum : "50",  //最大可打开窗口数量
-					url : "json/navs-manager.json" //获取菜单json地址
+					url : "json/m-navs.json" //获取菜单json地址
 				});
 			}
-	    	else if(role=='读者')
+	    	else
 			{
 				tab = layui.bodyTab({
 					openTabNum : "50",  //最大可打开窗口数量
-					url : "json/navs-stu.json" //获取菜单json地址
+					url : "json/r-navs.json" //获取菜单json地址
 				});
-			}
-	    	else{
-				tab = layui.bodyTab({
-					openTabNum : "50",  //最大可打开窗口数量
-					url : "json/navs-manager.json" //获取菜单json地址
-				});
-			}
+			};
 
 
 		//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
