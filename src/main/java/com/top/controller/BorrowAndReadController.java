@@ -1,14 +1,12 @@
 package com.top.controller;
 
-import com.top.controller.ReaderController;
 import com.top.pojo.Book;
 import com.top.pojo.BorrowAndRead;
-import com.top.pojo.Reader;
+import com.top.pojo.User;
 import com.top.service.BookService;
 import com.top.service.BorrowAndReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -103,10 +101,10 @@ public class BorrowAndReadController {
     public Map<String, String> inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
         Map<String, String> map = new HashMap<>();
         System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
-        +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
-        Reader reader = (Reader) session.getAttribute("SESSION_USER");
+                +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
+        User user = (User) session.getAttribute("SESSION_USER");
 
-        List<BorrowAndRead> borrowAndReadList = borrowAndReadService.InquireBorrowAndRead(reader.getId());
+        List<BorrowAndRead> borrowAndReadList = borrowAndReadService.InquireBorrowAndRead(user.getId());
 
         if (borrowAndReadList != null) {
             System.out.println("inquire borrowAndReadList success");
