@@ -75,75 +75,32 @@
 
         console.log(obj);
 
-        var newStr = name.indexOf("s");
+        $.ajax({
+            url: '${ctx}/user/login',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (data) {
+                console.log(data)
+                if (data.logincheck == "success") {
+                    layer.msg('登录成功');
+                    window.setTimeout(function () {
+                    }, 2 * 1000);
+                    window.location.href = "../../index.jsp";
+                } else {
 
-        if (newStr == 0) {
+                    layer.msg('账号密码错误');
+                    setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
+                        window.location.reload();//页面刷新
+                    }, 2000);
 
-            console.log("s开头 管理员")
+                    $('input[id=login_username]').val("");
+                    $('input[id=login_password]').val("");
 
-			$.ajax({
-				url: '${ctx}/managers/login',
-				type: 'post',
-				contentType: 'application/json',
-				data: JSON.stringify(obj),
-				success: function (data) {
-					console.log(data)
-					if (data.logincheck == "success") {
-						layer.msg('登录成功');
-						window.setTimeout(function () {
-						}, 2 * 1000);
-						window.location.href = "../../index.jsp";
-					} else {
+                }
+            }
 
-						layer.msg('账号密码错误');
-						setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
-							window.location.reload();//页面刷新
-						}, 2000);
-
-						$('input[id=login_username]').val("");
-						$('input[id=login_password]').val("");
-
-					}
-				}
-
-			})
-
-        }
-		else {
-
-            console.log("非s开头 读者")
-
-			$.ajax({
-				url: '${ctx}/reader/login',
-				type: 'post',
-				contentType: 'application/json',
-				data: JSON.stringify(obj),
-				success: function (data) {
-					console.log(data)
-					if (data.logincheck == "success") {
-						layer.msg('登录成功');
-						window.setTimeout(function () {
-						}, 2 * 1000);
-						window.location.href = "../../index.jsp";
-					} else {
-
-						layer.msg('账号密码错误');
-						setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
-							window.location.reload();//页面刷新
-						}, 2000);
-
-						$('input[id=login_username]').val("");
-						$('input[id=login_password]').val("");
-
-					}
-				}
-
-			})
-
-        }
-
-
-
+        })
     });
 </script>
 

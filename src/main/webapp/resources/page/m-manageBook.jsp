@@ -108,7 +108,7 @@
             <h1 style="color: green">书籍管理</h1>
         </legend>
     </fieldset>
-    <form class="layui-form" action="/user/ListAllStu?name=#searchname">
+    <form class="layui-form" action="/book/inquireBook?name=#searchname">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
@@ -153,7 +153,8 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${bookList}" var="book">
+    <c:forEach items="${SESSION_BOOK}" var="book">
+        <c:set var="isLend" scope="session" value="${book.lendState}"/>
         <tr>
 
             <td>${book.id}</td>
@@ -165,7 +166,14 @@
             <td>${book.publisher}</td>
             <td>${book.publishTime}</td>
             <td>${book.registerTime}</td>
-            <td>${book.num}</td>
+                <%--            <td>${book.lendState}</td>--%>
+
+            <c:if test="${isLend == '1'}">
+                已被借阅
+            </c:if>
+            <c:if test="${isLend != '1'}">
+                可借阅
+            </c:if>
 
         </tr>
     </c:forEach>
@@ -235,20 +243,32 @@
             </div>
         </div>
 
+        <%--        <div class="layui-form-item">--%>
+        <%--            <label class="layui-form-label" style="color:red">登记时间：</label>--%>
+        <%--            <div class="layui-input-inline">--%>
+        <%--                <input type="text" name="score" id="score" autocomplete="off"--%>
+        <%--                       class="layui-input" value="300">--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
+
 <%--        <div class="layui-form-item">--%>
-<%--            <label class="layui-form-label" style="color:red">登记时间：</label>--%>
+<%--            <label class="layui-form-label" style="color:red">借阅状态：</label>--%>
 <%--            <div class="layui-input-inline">--%>
-<%--                <input type="text" name="score" id="score" autocomplete="off"--%>
+<%--                <input type="text" name="score" id="addLendState" autocomplete="off"--%>
 <%--                       class="layui-input" value="300">--%>
 <%--            </div>--%>
 <%--        </div>--%>
+
         <div class="layui-form-item">
-            <label class="layui-form-label" style="color:red">借阅状态：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="score" id="addLendState" autocomplete="off"
-                       class="layui-input" value="300">
+            <label class="layui-form-label">借阅状态：</label>
+            <div class="layui-input-block">
+                <select id="addLendState" autocomplete="off">
+                    <option value="0" selected="">可借阅</option>
+                    <option value="1" >已被借阅</option>
+                </select>
             </div>
         </div>
+
         <div class="layui-form-item" style="text-align: center;">
             <div class="layui-input-block">
                 <button type="submit" class="layui-btn layui-btn-normal
