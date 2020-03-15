@@ -32,17 +32,21 @@ public class BorrowAndReadController {
      * */
     @RequestMapping("/addBorrowAndRead")
     @ResponseBody
-    public Map<String,String> addBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead){
+    public Map<String,String> addBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User userold = (User)session.getAttribute("SESSION_USER");
 
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         borrowAndRead.setLendTime((sdf.format(date)));
-
+        borrowAndRead.setBorrowPersonId(userold.getId());
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.MONTH, 1);
         date = cal.getTime();
         borrowAndRead.setReturnTime(sdf.format(date));
+
+        System.out.println(borrowAndRead.toString());
 
         boolean success;
         Map<String, String > map = new HashMap<>();
