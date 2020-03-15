@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.top.mapper.UserMapper">
 
-    <insert id="addAReader" parameterType="com.top.pojo.User">
+    <insert id="addAUser" parameterType="com.top.pojo.User">
         insert into reader values (#{addReader.id}, #{addReader.password}, #{addReader.name}, #{addReader.gender},
         #{addReader.registerDate}, #{addReader.tel}, #{addReader.address})
     </insert>
 
-    <delete id="deleteAReader" parameterType="String">
+    <delete id="deleteAUser" parameterType="String">
         delete from reader where id = #{deleteReader}
     </delete>
 
-    <update id="modifyAReader" parameterType="com.top.pojo.User">
+    <update id="modifyAUser" parameterType="com.top.pojo.User">
         update reader
         <set>
             <if test="modifyReader.password != null and modifyReader.password != ''">
@@ -43,8 +43,12 @@
         </where>
     </update>
 
-    <select id="getAReader" parameterType="String" resultType="com.top.pojo.User">
+    <select id="getAUser" parameterType="String" resultType="com.top.pojo.User">
         select * from reader where id = #{getReader}
+    </select>
+
+    <select id="getAllUser" parameterType="String" resultType="com.top.pojo.User">
+        select * from reader
     </select>
 
 </mapper>
