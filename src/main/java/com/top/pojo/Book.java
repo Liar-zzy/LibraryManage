@@ -101,4 +101,20 @@ public class Book {
     public void setLendState(boolean lendState) {
         this.lendState = lendState;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", publisher='" + publisher + '\'' +
+                ", publishTime='" + publishTime + '\'' +
+                ", registerTime='" + registerTime + '\'' +
+                ", lendState=" + lendState +
+                ", isbn='" + isbn + '\'' +
+                '}';
+    }
 }
