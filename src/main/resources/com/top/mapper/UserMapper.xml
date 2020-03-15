@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.top.mapper.ReaderMapper">
+<mapper namespace="com.top.mapper.UserMapper">
 
-    <insert id="addAReader" parameterType="com.top.pojo.Reader">
+    <insert id="addAReader" parameterType="com.top.pojo.User">
         insert into reader values (#{addReader.id}, #{addReader.password}, #{addReader.name}, #{addReader.gender},
         #{addReader.registerDate}, #{addReader.tel}, #{addReader.address})
     </insert>
@@ -11,7 +11,7 @@
         delete from reader where id = #{deleteReader}
     </delete>
 
-    <update id="modifyAReader" parameterType="com.top.pojo.Reader">
+    <update id="modifyAReader" parameterType="com.top.pojo.User">
         update reader
         <set>
             <if test="modifyReader.password != null and modifyReader.password != ''">
@@ -43,7 +43,7 @@
         </where>
     </update>
 
-    <select id="getAReader" parameterType="String" resultType="com.top.pojo.Reader">
+    <select id="getAReader" parameterType="String" resultType="com.top.pojo.User">
         select * from reader where id = #{getReader}
     </select>
 
