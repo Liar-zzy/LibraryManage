@@ -37,18 +37,14 @@
 				<input type="text" value="${SESSION_USER.name}" disabled class="layui-input layui-disabled" readonly="true">
 			</div>
 		</div>
+
 		<div class="layui-form-item">
 			<label class="layui-form-label">性别</label>
 			<div class="layui-input-block">
 				<input type="text" value="${SESSION_USER.gender}" disabled class="layui-input layui-disabled" readonly="true">
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">注册时间</label>
-			<div class="layui-input-block">
-				<input type="text" value="${SESSION_USER.registerDate}" disabled class="layui-input layui-disabled" readonly="true">
-			</div>
-		</div>
+
 		<div class="layui-form-item">
 			<label class="layui-form-label">联系方式</label>
 			<div class="layui-input-block">
@@ -69,6 +65,7 @@
 				<input type="text" value="${SESSION_USER.password}" id="alterPassword" lay-verify="password" class="layui-input userPassword">
 			</div>
 		</div>
+
 		
 		<div class="layui-form-item">
 			<div class="layui-input-block">

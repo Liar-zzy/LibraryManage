@@ -71,12 +71,11 @@
     </div> -->
     <thead>
     <tr>
-        <th lay-data="{field:'1',align:'center'}">ISBN</th>
-        <th lay-data="{field:'2',align:'center',width:240}">Id</th>
-        <th lay-data="{field:'3',align:'center', sort: true,width:240}">姓名</th>
-        <th lay-data="{field:'4',align:'center', sort: true,width:240}">性别</th>
-        <th lay-data="{field:'5',align:'center', sort: true,width:240}">联系方式</th>
-        <th lay-data="{field:'6',align:'center', sort: true,width:240}">地址</th>
+        <th lay-data="{field:'1',align:'center'，sort: true,width:240}">Id</th>
+        <th lay-data="{field:'2',align:'center', width:240}">姓名</th>
+        <th lay-data="{field:'3',align:'center', width:240}">性别</th>
+        <th lay-data="{field:'4',align:'center', width:240}">联系方式</th>
+        <th lay-data="{field:'5',align:'center', width:240}">地址</th>
     </tr>
     </thead>
     <tbody>
