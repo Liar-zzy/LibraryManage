@@ -110,14 +110,12 @@
                 console.log(data);
 
                 var borrowBookId = data[1];
-                var borrowPersonId = date[3];
 
                 var alterobj = {
-                    borrowBookId : borrowBookId,
-                    borrowPersonId : borrowPersonId
+                    borrowBookId : borrowBookId
                 };
                 $.ajax({
-                    url: '${ctx}/borrowAndRead/deleteBorrowAndRead',
+                    url: '${ctx}/resources/borrowAndRead/deleteBorrowAndRead',
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(alterobj),

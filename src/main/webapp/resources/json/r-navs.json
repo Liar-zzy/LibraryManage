@@ -16,7 +16,7 @@
 	{
 		"title": "个人中心",
 		"icon": "&#xe630;",
-		"href": "page/user/userInfo.jsp",
+		"href": "page/user/Reader-userInfo.jsp",
 		"spread": false
 	}
 ]

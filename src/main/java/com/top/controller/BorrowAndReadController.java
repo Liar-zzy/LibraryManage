@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -69,12 +70,16 @@ public class BorrowAndReadController {
      * */
     @RequestMapping("/deleteBorrowAndRead")
     @ResponseBody
-    public Map<String,String> deleteBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead){
+    public Map<String,String> deleteBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpServletRequest request){
         System.out.println("delete A borrowAndRead ");
-        System.out.println(borrowAndRead.getBorrowBookId()+" "+borrowAndRead.getBorrowBookName());
+        System.out.println(borrowAndRead.getBorrowBookId());
 
+        HttpSession session = request.getSession();
+        User userold = (User)session.getAttribute("SESSION_USER");
         boolean success;
+        borrowAndRead.setBorrowPersonId(userold.getId());
         success = borrowAndReadService.DeleteRecord(borrowAndRead.getBorrowBookId(),borrowAndRead.getBorrowPersonId());
+
 
         Map<String, String > map = new HashMap<>();
         if(success){
@@ -98,13 +103,9 @@ public class BorrowAndReadController {
      * 查询个人借阅信息
      * */
     @RequestMapping("/inquireBorrowAndRead")
-    @ResponseBody
-    public ModelAndView inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
+    public ModelAndView inquireBorrowAndRead(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
-        System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
-
-        +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
 
         User user = (User) session.getAttribute("SESSION_USER");
 
@@ -120,6 +121,8 @@ public class BorrowAndReadController {
             System.out.println("inquire borrowAndReadList failure");
 
         }
+
+        modelAndView.setViewName("page/r-manageBook");
         return modelAndView;
     }
 
