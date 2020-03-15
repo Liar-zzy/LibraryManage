@@ -1,20 +1,21 @@
 package com.top.controller;
 
+import com.top.controller.ReaderController;
 import com.top.pojo.Book;
 import com.top.pojo.BorrowAndRead;
+import com.top.pojo.Reader;
 import com.top.service.BookService;
 import com.top.service.BorrowAndReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/borrowAndRead")
@@ -90,6 +91,32 @@ public class BorrowAndReadController {
         else{
             map.put("delete","success");
             System.out.println("delete borrowAndRead fail");
+        }
+        return map;
+    }
+
+    /**
+     * 查询借阅信息
+     * */
+    @RequestMapping("/inquireBorrowAndRead")
+    @ResponseBody
+    public Map<String, String> inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
+        Map<String, String> map = new HashMap<>();
+        System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
+        +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
+        Reader reader = (Reader) session.getAttribute("SESSION_USER");
+
+        List<BorrowAndRead> borrowAndReadList = borrowAndReadService.InquireBorrowAndRead(reader.getId());
+
+        if (borrowAndReadList != null) {
+            System.out.println("inquire borrowAndReadList success");
+
+            session.setAttribute("borrowBookList", borrowAndReadList);
+
+            map.put("inquireBorrowAndReadList", "success");
+        } else {
+            System.out.println("inquire borrowAndReadList failure");
+            map.put("inquireBorrowAndReadList", "failure");
         }
         return map;
     }

@@ -4,6 +4,8 @@ import com.top.pojo.BorrowAndRead;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BorrowAndReadMapper {
 
@@ -17,4 +19,8 @@ public interface BorrowAndReadMapper {
      * */
     int deleteARecord(@Param("Bid")String Bid, @Param("Pid")String Pid);
 
+    /**
+     * 查询单个读者借阅信息
+     * */
+    List<BorrowAndRead> inquireBorrowAndRead(@Param("Pid")String Pid);
 }

@@ -2,6 +2,8 @@ package com.top.service;
 
 import com.top.pojo.BorrowAndRead;
 
+import java.util.List;
+
 public interface BorrowAndReadService {
 
     /**
@@ -13,4 +15,9 @@ public interface BorrowAndReadService {
      * 删除借阅记录
      * */
     boolean DeleteRecord(String Bid, String Pid);
+
+    /**
+     * 查询单个读者借阅信息
+     * */
+    List<BorrowAndRead> InquireBorrowAndRead(String Pid);
 }
