@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 读者登录
+     * User登录
      * */
     @RequestMapping("/login")
     @ResponseBody
@@ -47,12 +47,12 @@ public class UserController {
     }
 
     /**
-     * 添加读者
+     * 添加User
      */
     @RequestMapping("/addUser")
     @ResponseBody
     public Map<String,String> addUser(@RequestBody User user){
-        
+
         boolean success;
         Map<String, String > map = new HashMap<>();
         success = userService.AddUser(user);
@@ -69,7 +69,7 @@ public class UserController {
     }
 
     /**
-     * 删除读者
+     * 删除User
      * */
     @RequestMapping("/deleteUser")
     @ResponseBody
@@ -93,7 +93,7 @@ public class UserController {
     }
 
     /**
-     * 修改读者信息
+     * 修改User
      * */
     @RequestMapping("/updateUser")
     @ResponseBody
