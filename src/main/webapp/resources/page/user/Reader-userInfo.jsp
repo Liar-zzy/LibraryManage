@@ -27,7 +27,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">ID</label>
 			<div class="layui-input-block">
-				<input type="text" value="${SESSION_USER.Id}" id="alterId" disabled class="layui-input layui-disabled" readonly="true">
+				<input type="text" value="${SESSION_USER.id}" id="alterId" disabled class="layui-input layui-disabled" readonly="true">
 			</div>
 		</div>
 

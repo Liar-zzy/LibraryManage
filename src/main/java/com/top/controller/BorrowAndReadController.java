@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-@RequestMapping("/borrowAndRead")
+@RequestMapping("resources/borrowAndRead")
 public class BorrowAndReadController {
 
     @Autowired
@@ -98,8 +99,9 @@ public class BorrowAndReadController {
      * */
     @RequestMapping("/inquireBorrowAndRead")
     @ResponseBody
-    public Map<String, String> inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
-        Map<String, String> map = new HashMap<>();
+    public ModelAndView inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+
         System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
 
         +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
@@ -113,12 +115,12 @@ public class BorrowAndReadController {
 
             session.setAttribute("borrowBookList", borrowAndReadList);
 
-            map.put("inquireBorrowAndReadList", "success");
+
         } else {
             System.out.println("inquire borrowAndReadList failure");
-            map.put("inquireBorrowAndReadList", "failure");
+
         }
-        return map;
+        return modelAndView;
     }
 
 

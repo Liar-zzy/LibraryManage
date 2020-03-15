@@ -45,7 +45,7 @@
         </legend>
     </fieldset>
 
-    <form class="layui-form" action="${pageContext.request.contextPath}/book/inquireBook?name=#searchname">
+    <form class="layui-form" action="${pageContext.request.contextPath}/book/inquireABook?name=#searchname">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
@@ -101,10 +101,10 @@
             <td>${book.registerTime}</td>
 
             <c:if test="${isLend == '1'}">
-                已被借阅
+                <td>已被借阅</td>
             </c:if>
             <c:if test="${isLend != '1'}">
-                可借阅
+            <td>可借阅</td>
             </c:if>
 
         </tr>

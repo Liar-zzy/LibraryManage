@@ -2,6 +2,8 @@ package com.top.service;
 
 import com.top.pojo.Book;
 
+import java.util.List;
+
 public interface BookService {
 
     /**
@@ -23,4 +25,9 @@ public interface BookService {
      * 查询图书
      * */
     Book GetBook(String Bid);
+
+    /**
+     * 查询所有图书
+     * */
+    List<Book>  GetAllBook();
 }

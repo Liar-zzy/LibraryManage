@@ -1,21 +1,26 @@
 package com.top.controller;
 
 import com.top.pojo.Book;
+import com.top.pojo.User;
 import com.top.service.BookService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/book")
+@RequestMapping("resources/book")
 public class BookController {
 
     @Autowired
@@ -98,28 +103,44 @@ public class BookController {
 
 
     /**
-     * 查询图书
+     * 查询所有图书
      * */
-    @RequestMapping("/inquireBook")
-    @ResponseBody
-    public Map<String, String> inquireBook(@RequestBody Book book, HttpSession session) {
-        Map<String, String> map = new HashMap<>();
+    @RequestMapping("/inquireAllBook")
+    public ModelAndView inquireBook( HttpServletRequest request) {
 
-        System.out.println("传入的 Book Id :   " + book.getId());
 
-        book = bookService.GetBook(book.getId());
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("SESSION_USER");
 
-        if (book != null) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Book> bookList;
+
+        bookList = bookService.GetAllBook();
+
+        if (bookList != null) {
+
             System.out.println("inquire success");
+            modelAndView.addObject("SESSION_BOOK", bookList);
 
-            session.setAttribute("SESSION_BOOK", book);
-
-            map.put("inquireBook", "success");
         } else {
             System.out.println("inquire failure");
-            map.put("inquireBook", "failure");
+
         }
-        return map;
+
+        System.out.println("用户角色  :  " + user.getRole());
+        if(user.getRole().equals("1"))
+        {
+            modelAndView.setViewName("page/m-getBook");
+            System.out.println("Manager getBook");
+        }
+        else
+        {
+            modelAndView.setViewName("page/r-getBook");
+            System.out.println("Reader getBook");
+        }
+
+        return modelAndView;
     }
 
 }

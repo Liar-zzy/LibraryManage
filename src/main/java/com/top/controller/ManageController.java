@@ -1,6 +1,8 @@
 package com.top.controller;
 
+import com.top.pojo.Book;
 import com.top.pojo.User;
+import com.top.service.BookService;
 import com.top.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,37 +22,64 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("resources/man")
+public class ManageController {
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BookService bookService;
+
     /**
-
-     * User登录
-
+     * 管理员 管理所有图书
      * */
-    @RequestMapping("/login")
-    @ResponseBody
-    public Map<String, String> login(@RequestBody User user, HttpSession session) {
-        Map<String, String> map = new HashMap<>();
-        System.out.println("传入的 User Id :   " + user.getId() + "  password: " + user.getPassword());
+    @RequestMapping("/inquireAllBook")
+    public ModelAndView inquireBook() {
 
-        user = userService.GetUser(user.getId());
+        ModelAndView modelAndView = new ModelAndView();
 
-        if (user != null) {
-            System.out.println("login success");
+        List<Book> bookList;
 
-            session.setAttribute("SESSION_USER", user);
+        bookList = bookService.GetAllBook();
 
-            map.put("logincheck", "success");
+        if (bookList != null) {
+
+            System.out.println("inquire success");
+            modelAndView.addObject("SESSION_BOOK", bookList);
 
         } else {
-            System.out.println("login failure");
-            map.put("logincheck", "failure");
+            System.out.println("inquire failure");
         }
-        return map;
+
+            modelAndView.setViewName("page/m-manageBook");
+            System.out.println("Man manageBook");
+
+        return modelAndView;
+    }
+
+    /**
+     * 管理员管理所有用户
+     * */
+    @RequestMapping("/manAllReader")
+    public ModelAndView manAllBorrowAndRead() {
+
+        ModelAndView modelAndView = new ModelAndView();
+
+
+        List<User> AllUserList = userService.getAllUser();
+
+        if (AllUserList != null) {
+            System.out.println("inquire AllUserList success");
+
+            modelAndView.addObject("AllUserList", AllUserList);
+
+        } else {
+            System.out.println("inquire AllUserList failure");
+
+        }
+        modelAndView.setViewName("page/m-manageReader");
+        return modelAndView;
     }
 
     /**
@@ -78,10 +107,7 @@ public class UserController {
     }
 
     /**
-
      * 删除User
-
-
      * */
     @RequestMapping("/deleteUser")
     @ResponseBody
@@ -111,19 +137,13 @@ public class UserController {
      * */
     @RequestMapping("/updateUser")
     @ResponseBody
-    public Map<String,String> updateUser(@RequestBody User user, HttpServletRequest request){
+    public Map<String,String> updateUser(@RequestBody User user){
         System.out.println("update A User ");
-        System.out.println("传入id ：" + user.getId() + "传入 password" + user.getPassword());
+        System.out.println(user.getId() + user.getName());
+
         boolean success;
-        Map<String, String > map = new HashMap<>();
-        HttpSession session = request.getSession();
-
-        User userold = (User)session.getAttribute("SESSION_USER");
-
-        userold.setPassword(user.getPassword());
         success = userService.UpdateUser(user);
-
-        session.setAttribute("SESSION_USER",userold);
+        Map<String, String > map = new HashMap<>();
 
         if(success == true) {
             map.put("update","success");
@@ -140,8 +160,7 @@ public class UserController {
      * 查询所有读者
      * */
     @RequestMapping("/inquireAllReader")
-    @ResponseBody
-    public ModelAndView inquireAllBorrowAndRead(@RequestBody User user, HttpSession session) {
+    public ModelAndView inquireAllBorrowAndRead() {
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -160,7 +179,6 @@ public class UserController {
         modelAndView.setViewName("page/m-getReader");
         return modelAndView;
     }
-
 
 }
 

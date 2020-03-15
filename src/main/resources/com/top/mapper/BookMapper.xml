@@ -58,6 +58,9 @@
     <select id="getABook" parameterType="String" resultType="com.top.pojo.Book">
         select * from book where id = #{getBook}
     </select>
+    <select id="getAllBook" resultType="com.top.pojo.Book">
+        select * from book
+    </select>
 
 
 </mapper>

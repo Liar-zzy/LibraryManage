@@ -16,67 +16,6 @@
 </head>
 <body>
 
-<%--示例开始--%>
-<div class="layui-container" style="margin-top: 100px;">
-    <form class="layui-form" id="form_test" action="{% url 'test' %}" method="post">
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">Id</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Eid"   autocomplete="off" readonly="true">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Ename"   autocomplete="off" readonly="true">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-block">
-                <select id="Egender" lay-filter="aihao">
-                    <option value="0" selected="">男</option>
-                    <option value="1" >女</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">联系方式</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Etele"  placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">地址</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Eaddress"  placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-
-            <div class="layui-input-block">
-                <!--不要用<button>-->
-                <!--<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>-->
-
-                <input class="layui-btn" id="input_test" data-method="input_submit" type="button" value="确定">
-            </div>
-        </div>
-    </form>
-</div>
-<script src="../static/layui/layui.all.js"></script>
-<script>
-    //一般直接写在一个js文件中
-
-</script>
-<%--示例结束--%>
-
-
 <script>
     function editUser(data) {
         var $ = layui.jquery;
@@ -183,12 +122,12 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${SESSION_STU}" var="user">
+    <c:forEach items="${AllUserList}" var="user">
         <tr>
-            <td>${user.Id}</td>
+            <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.gender}</td>
-            <td>${user.apartment}</td>
+            <td>${user.tel}</td>
             <td>${user.address}</td>
         </tr>
     </c:forEach>

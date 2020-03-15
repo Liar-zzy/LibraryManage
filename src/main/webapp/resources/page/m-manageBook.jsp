@@ -17,67 +17,6 @@
 </head>
 <body>
 
-<%--示例开始--%>
-<div class="layui-container" style="margin-top: 100px;">
-    <form class="layui-form" id="form_test" action="{% url 'test' %}" method="post">
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">Id</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Eid" autocomplete="off" readonly="true">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Ename" autocomplete="off" readonly="true">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-block">
-                <select id="Egender" lay-filter="aihao">
-                    <option value="0" selected="">男</option>
-                    <option value="1">女</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">联系方式</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Etele" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">地址</label>
-            <div class="layui-input-inline">
-                <input type="text" id="Eaddress" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-
-            <div class="layui-input-block">
-                <!--不要用<button>-->
-                <!--<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>-->
-
-                <input class="layui-btn" id="input_test" data-method="input_submit" type="button" value="确定">
-            </div>
-        </div>
-    </form>
-</div>
-<script src="../static/layui/layui.all.js"></script>
-<script>
-    //一般直接写在一个js文件中
-
-</script>
-<%--示例结束--%>
-
-
 <script>
     function openAddBook(data) {
         var $ = layui.jquery;
@@ -92,7 +31,7 @@
             type: 1,
             title: '修改信息',
             content: $("#saveOrUpdateDiv"),
-            area: ['400px', '200px'],
+            area: ['400px', '600px'],
             success: function (index) {
                 //alert("修改成功");
             }
@@ -169,10 +108,10 @@
                 <%--            <td>${book.lendState}</td>--%>
 
             <c:if test="${isLend == '1'}">
-                已被借阅
+                <td>已被借阅</td>
             </c:if>
             <c:if test="${isLend != '1'}">
-                可借阅
+                <td>可借阅</td>
             </c:if>
 
         </tr>
@@ -190,74 +129,58 @@
             <label class="layui-form-label" style="color:red">id：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addId" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" placeholder="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">书名：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addName" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">ISBN：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addIsbn" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">作者：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addAuthor" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">种类：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addType" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">价格：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addPrice" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">出版人：</label>
             <div class="layui-input-inline">
                 <input type="text" name="num" id="addPublisher" autocomplete="off"
-                       class="layui-input" value="150">
+                       class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style="color:red">出版时间：</label>
             <div class="layui-input-inline">
                 <input type="text" name="score" id="addPublishTime" autocomplete="off"
-                       class="layui-input" value="300">
+                       class="layui-input" value="">
             </div>
         </div>
-
-        <%--        <div class="layui-form-item">--%>
-        <%--            <label class="layui-form-label" style="color:red">登记时间：</label>--%>
-        <%--            <div class="layui-input-inline">--%>
-        <%--                <input type="text" name="score" id="score" autocomplete="off"--%>
-        <%--                       class="layui-input" value="300">--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
-
-<%--        <div class="layui-form-item">--%>
-<%--            <label class="layui-form-label" style="color:red">借阅状态：</label>--%>
-<%--            <div class="layui-input-inline">--%>
-<%--                <input type="text" name="score" id="addLendState" autocomplete="off"--%>
-<%--                       class="layui-input" value="300">--%>
-<%--            </div>--%>
-<%--        </div>--%>
 
         <div class="layui-form-item">
             <label class="layui-form-label">借阅状态：</label>
