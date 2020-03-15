@@ -4,7 +4,7 @@
 
     <insert id="insertARecord" parameterType="com.top.pojo.BorrowAndRead">
         insert into borrowandread values (#{addRecord.borrowBookId}, #{addRecord.borrowBookName},
-        #{addRecord.borrowPersonId}, #{addRecord.lendTime}, #{param1.returnTime})
+        #{addRecord.borrowPersonId}, #{addRecord.lendTime}, #{addRecord.returnTime})
     </insert>
 
     <delete id="deleteARecord">

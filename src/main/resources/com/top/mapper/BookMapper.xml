@@ -14,7 +14,7 @@
     <update id="modifyABook" parameterType="com.top.pojo.Book">
         update book
         <set>
-            <if test="modifyBook.name != null and modify.name != ''">
+            <if test="modifyBook.name != null and modifyBook.name != ''">
                 name = #{modifyBook.name},
             </if>
 
@@ -27,7 +27,7 @@
             </if>
 
             <if test="modifyBook.price != null and modifyBook.price != ''">
-                price = #{modify.price},
+                price = #{modifyBook.price},
             </if>
 
             <if test="modifyBook.publisher != null and modifyBook.publisher != ''">
@@ -43,7 +43,7 @@
             </if>
 
             <if test="modifyBook.lendState != null and modifyBook.lendState != ''">
-                lendState = #{modify.lendState},
+                lendState = #{modifyBook.lendState},
             </if>
 
             <if test="modifyBook.ISBN != null and modifyBook.ISBN != ''">
