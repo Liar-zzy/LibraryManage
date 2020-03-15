@@ -23,4 +23,9 @@ public interface BorrowAndReadMapper {
      * 查询单个读者借阅信息
      * */
     List<BorrowAndRead> inquireBorrowAndRead(@Param("Pid")String Pid);
+
+    /**
+     * 查询所有借阅记录
+     * */
+    List<BorrowAndRead> inquireAllBorrowAndRead();
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -114,5 +115,30 @@ public class UserController {
         }
         return map;
     }
+
+    /**
+     * 查询所有读者
+     * */
+    @RequestMapping("/inquireAllReader")
+    @ResponseBody
+    public Map<String, String> inquireAllBorrowAndRead(@RequestBody User user, HttpSession session) {
+
+        Map<String, String> map = new HashMap<>();
+
+        List<User> AllUserList = userService.getAllUser();
+
+        if (AllUserList != null) {
+            System.out.println("inquire AllUserList success");
+
+            session.setAttribute("AllUserList", AllUserList);
+
+            map.put("AllUserList", "success");
+        } else {
+            System.out.println("inquire AllUserList failure");
+            map.put("AllUserList", "failure");
+        }
+        return map;
+    }
+
 
 }

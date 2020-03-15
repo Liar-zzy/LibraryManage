@@ -30,7 +30,7 @@ public interface UserMapper {
     User getAUser(@Param("getUser")String rid);
 
     /**
-     * 查询所有用户
+     * 查询所有读者
      * */
     List<User> getAllUser();
 }
