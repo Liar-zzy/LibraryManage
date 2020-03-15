@@ -6,6 +6,8 @@ import com.top.service.BorrowAndReadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("BorrowAndReadService")
 public class BorrowAndReadServiceImpl implements BorrowAndReadService {
 
@@ -22,5 +24,11 @@ public class BorrowAndReadServiceImpl implements BorrowAndReadService {
     public boolean DeleteRecord(String Bid, String Pid) {
         int row = borrowAndReadMapper.deleteARecord(Bid, Pid);
         return row == 1 ? true : false;
+    }
+
+    @Override
+    public List<BorrowAndRead> InquireBorrowAndRead(String Pid) {
+        List<BorrowAndRead> list = borrowAndReadMapper.inquireBorrowAndRead(Pid);
+        return list;
     }
 }

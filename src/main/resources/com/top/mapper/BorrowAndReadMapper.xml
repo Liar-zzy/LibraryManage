@@ -11,4 +11,8 @@
          delete from borrowandread where borrowBookId = #{Bid} and borrowPersonId = #{Pid}
     </delete>
 
+    <select id="inquireBorrowAndRead" resultType="com.top.pojo.BorrowAndRead">
+        select * from borrowandread where borrowPersonId = #{Pid};
+    </select>
+
 </mapper>
