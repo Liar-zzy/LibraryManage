@@ -45,7 +45,7 @@
         </legend>
     </fieldset>
 
-    <form class="layui-form" action="${pageContext.request.contextPath}/RedList/insertIntoRedList?name=#searchname">
+    <form class="layui-form" action="${pageContext.request.contextPath}/book/inquireBook?name=#searchname">
         <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">
@@ -56,7 +56,7 @@
                 </div>
                 <input type="submit" class="layui-btn layui-btn-danger" value="搜索" id="search">
                 <%--                <button class="layui-btn" data-type="reload">搜索</button>--%>
-<%--                <button type="button" class="layui-btn" lay-event="add" onclick="openAddUser()">设定免费条件</button>--%>
+                <%--                <button type="button" class="layui-btn" lay-event="add" onclick="openAddUser()">设定免费条件</button>--%>
 
             </div>
         </div>
@@ -87,6 +87,7 @@
     </thead>
     <tbody>
     <c:forEach items="${SESSION_BOOK}" var="book">
+        <c:set var="isLend" scope="session" value="${book.lendState}"/>
         <tr>
 
             <td>${book.id}</td>
@@ -98,7 +99,13 @@
             <td>${book.publisher}</td>
             <td>${book.publishTime}</td>
             <td>${book.registerTime}</td>
-            <td>${book.num}</td>
+
+            <c:if test="${isLend == '1'}">
+                已被借阅
+            </c:if>
+            <c:if test="${isLend != '1'}">
+                可借阅
+            </c:if>
 
         </tr>
     </c:forEach>

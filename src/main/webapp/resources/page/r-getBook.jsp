@@ -95,7 +95,7 @@
     <tbody>
 <%--    <jsp:useBean id="bookList" scope="session" type="com.top.pojo.Book"/>--%>
 <%--    <c:set var="isLend" scope="session" value="${bookList.lendState}"/>--%>
-    <c:forEach items="${bookList}" var="book">
+    <c:forEach items="${SESSION_BOOK}" var="book">
         <c:set var="isLend" scope="session" value="${book.lendState}"/>
         <tr>
 

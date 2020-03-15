@@ -69,7 +69,7 @@
 
 		}
 		$.ajax({
-			url:'${ctx}/manager/updateManager',
+			url:'${ctx}/user/updateUser',
 			type:'post',
 			contentType:'application/json',
 			data:JSON.stringify(alteredObj),

@@ -108,13 +108,11 @@
 	})
 	layui.use(['bodyTab','form','element','layer','jquery'],function(){
 
-		var id='${sessionScope.SESSION_USER.id}';
+		var role='${sessionScope.SESSION_USER.role}';
 
 		console.log(id)
 
-		var role = id.indexOf('s');
-		//是否以s开头
-
+		//通过role决定使用哪一个 json
 
 		var form = layui.form,
 			element = layui.element;

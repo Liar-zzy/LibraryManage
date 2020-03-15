@@ -169,7 +169,7 @@
           <button type="button" class="layui-btn" lay-event="add" >添加用户</button>
     </div> -->
     <div id="userBar" style="display:none;">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit">重置密码</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </div>
     <thead>
@@ -257,16 +257,16 @@
 
                 //layer.msg("删除");
                 console.log(data[1]);
-                var id = data[1];
+                var name = data[1];
 
-                var alterobj = {
-                    id: id
+                var alterObj = {
+                    id: name
                 };
                 $.ajax({
                     url: '${ctx}/user/deleteUser',
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify(alterobj),
+                    data: JSON.stringify(alterObj),
                     success: function (databack) {
                         console.log(databack);
                         if (databack.deleteUser == "success") {
@@ -282,29 +282,29 @@
                 //openUpdateUser();
                 console.log(data)
                 console.log(data[1])
-                var id = data[1]
-                var alterobj = {
+                var id = data[1];
+                var alterObj = {
                     id: id,
                     password: "000000",
                 }
 
                 editUser(data);
 
-                <%--$.ajax({--%>
-                <%--    url:'${ctx}/user/modify',--%>
-                <%--    type:'post',--%>
-                <%--    contentType:'application/json',--%>
-                <%--    data:JSON.stringify(alterobj),--%>
-                <%--    success:function (databack) {--%>
-                <%--        console.log(databack)--%>
-                <%--        if(databack.update=="success"){--%>
-                <%--            layer.msg("重置成功")--%>
-                <%--        }--%>
-                <%--        setTimeout(function(){  //使用  setTimeout（）方法设定定时2000毫秒--%>
-                <%--            window.location.reload();//页面刷新--%>
-                <%--        },2000);--%>
-                <%--    }--%>
-                <%--})--%>
+                $.ajax({
+                    url:'${ctx}/user/modify',
+                    type:'post',
+                    contentType:'application/json',
+                    data:JSON.stringify(alterObj),
+                    success:function (databack) {
+                        console.log(databack)
+                        if(databack.update=="success"){
+                            layer.msg("重置成功")
+                        }
+                        setTimeout(function(){  //使用  setTimeout（）方法设定定时2000毫秒
+                            window.location.reload();//页面刷新
+                        },2000);
+                    }
+                })
             }
         });
 

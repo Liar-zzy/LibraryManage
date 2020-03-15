@@ -54,7 +54,7 @@
 <table lay-filter="demo" id="demo">
 
     <div id="userBar" style="display:none;">
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delBook">删除</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delBook">归还</a>
     </div>
     <thead>
     <tr>
@@ -109,76 +109,32 @@
                 //layer.msg("删除");
                 console.log(data);
 
-                var id = data[1];
+                var borrowBookId = data[1];
+                var borrowPersonId = date[3];
 
                 var alterobj = {
-                    id: id
+                    borrowBookId : borrowBookId,
+                    borrowPersonId : borrowPersonId
                 };
                 $.ajax({
-                    url: '${ctx}/user/deleteUser',
+                    url: '${ctx}/borrowAndRead/deleteBorrowAndRead',
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(alterobj),
                     success: function (databack) {
                         console.log(databack);
                         if (databack.deleteUser == "success") {
-                            layer.msg("授权成功")
+                            layer.msg("还书成功")
                         }
                         setTimeout(function () {  //使用  setTimeout（）方法设定定时2000毫秒
                             window.location.reload();//页面刷新
                         }, 2000);
                     }
                 })
-            } else if (layEvent === 'edit') { //编辑
-                //layer.msg("编辑");
-                //openUpdateUser();
-                console.log(data)
-                console.log(data[1])
-                var id = data[1]
-                var alterobj = {
-                    id: id,
-                    password: "000000",
-                }
-
-                editUser(data);
-
-                <%--$.ajax({--%>
-                <%--    url:'${ctx}/user/modify',--%>
-                <%--    type:'post',--%>
-                <%--    contentType:'application/json',--%>
-                <%--    data:JSON.stringify(alterobj),--%>
-                <%--    success:function (databack) {--%>
-                <%--        console.log(databack)--%>
-                <%--        if(databack.update=="success"){--%>
-                <%--            layer.msg("重置成功")--%>
-                <%--        }--%>
-                <%--        setTimeout(function(){  //使用  setTimeout（）方法设定定时2000毫秒--%>
-                <%--            window.location.reload();//页面刷新--%>
-                <%--        },2000);--%>
-                <%--    }--%>
-                <%--})--%>
             }
         });
 
-        var url;
-        var mainIndex;
 
-
-        //打开修改页面
-        function openUpdateUser(data) {
-
-            mainIndex = layer.open({
-                type: 1,
-                title: '修改密码',
-                content: $("#saveOrUpdateDiv"),
-                area: ['400px', '200px'],
-                success: function (index) {
-                    //alert("ok");
-                    form.val("dataFrm", data);
-                    url = "/market_3x/UserServlet?type=update";
-                }
-            });
-        }
 
         //保存
         form.on("submit(doSubmit)", function (obj) {
