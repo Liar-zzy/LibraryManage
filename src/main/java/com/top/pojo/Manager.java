@@ -2,18 +2,18 @@ package com.top.pojo;
 
 public class Manager {
 
-    private String Id;
+    private String id;
 
     private String name;
 
     private String password;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
