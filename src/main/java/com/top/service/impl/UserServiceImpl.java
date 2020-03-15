@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-    
+
     @Override
     public boolean AddUser(User user) {
         int row = userMapper.addAUser(user);
@@ -39,9 +39,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+
     public List<User> getAllUser() {
+
         List<User> list = userMapper.getAllUser();
         return list;
     }
 
+
 }
+

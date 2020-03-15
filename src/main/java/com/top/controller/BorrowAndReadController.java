@@ -101,7 +101,9 @@ public class BorrowAndReadController {
     public Map<String, String> inquireBorrowAndRead(@RequestBody BorrowAndRead borrowAndRead, HttpSession session) {
         Map<String, String> map = new HashMap<>();
         System.out.println("传入的 borrowAndRead Id :   " + borrowAndRead.getBorrowBookId()
+
         +"借阅读者 Id：" + borrowAndRead.getBorrowPersonId());
+
         User user = (User) session.getAttribute("SESSION_USER");
 
         List<BorrowAndRead> borrowAndReadList = borrowAndReadService.InquireBorrowAndRead(user.getId());
@@ -118,6 +120,7 @@ public class BorrowAndReadController {
         }
         return map;
     }
+
 
     /**
      * 查询所有借阅信息
@@ -144,3 +147,4 @@ public class BorrowAndReadController {
         return map;
     }
 }
+

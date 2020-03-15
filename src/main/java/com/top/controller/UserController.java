@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+
 import java.util.List;
+
 import java.util.Map;
 
 @Controller
@@ -23,7 +25,9 @@ public class UserController {
     private UserService userService;
 
     /**
+
      * User登录
+
      * */
     @RequestMapping("/login")
     @ResponseBody
@@ -48,7 +52,9 @@ public class UserController {
     }
 
     /**
+
      * 添加User
+
      */
     @RequestMapping("/addUser")
     @ResponseBody
@@ -70,7 +76,10 @@ public class UserController {
     }
 
     /**
+
      * 删除User
+
+
      * */
     @RequestMapping("/deleteUser")
     @ResponseBody
@@ -94,7 +103,9 @@ public class UserController {
     }
 
     /**
+
      * 修改User
+
      * */
     @RequestMapping("/updateUser")
     @ResponseBody
@@ -115,6 +126,7 @@ public class UserController {
         }
         return map;
     }
+
 
     /**
      * 查询所有读者
@@ -142,3 +154,4 @@ public class UserController {
 
 
 }
+
