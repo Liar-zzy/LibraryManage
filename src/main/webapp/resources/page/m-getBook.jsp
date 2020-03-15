@@ -86,7 +86,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${RedList}" var="book">
+    <c:forEach items="${SESSION_BOOK}" var="book">
         <tr>
 
             <td>${book.id}</td>
