@@ -82,7 +82,7 @@
             console.log("s开头 管理员")
 
 			$.ajax({
-				url: '${ctx}/manager/login',
+				url: '${ctx}/managers/login',
 				type: 'post',
 				contentType: 'application/json',
 				data: JSON.stringify(obj),

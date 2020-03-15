@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/managers")
 public class ManagerController {
 
     @Autowired
