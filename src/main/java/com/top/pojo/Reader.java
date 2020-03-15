@@ -2,7 +2,7 @@ package com.top.pojo;
 
 public class Reader {
 
-    private String Id;
+    private String id;
 
     private String password;
 
@@ -17,11 +17,11 @@ public class Reader {
     private String address;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getPassword() {

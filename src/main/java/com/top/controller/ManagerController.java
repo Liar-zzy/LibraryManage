@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +27,7 @@ public class ManagerController {
     @ResponseBody
     public Map<String, String> login(@RequestBody Manager manager, HttpSession session) {
         Map<String, String> map = new HashMap<>();
-        System.out.println("传入的 Reader Id :   " + manager.getId() + "  password: " + manager.getPassword());
+        System.out.println("传入的 Manager Id :   " + manager.getId() + "  password: " + manager.getPassword());
 
         manager = managerService.GetManager(manager.getId());
 
