@@ -137,14 +137,13 @@ public class UserController {
 
 
     /**
-     * 查询所有读者
+            * 查询所有读者
      * */
     @RequestMapping("/inquireAllReader")
     @ResponseBody
     public ModelAndView inquireAllBorrowAndRead(@RequestBody User user, HttpSession session) {
 
         ModelAndView modelAndView = new ModelAndView();
-
 
         List<User> AllUserList = userService.getAllUser();
 
@@ -161,6 +160,27 @@ public class UserController {
         return modelAndView;
     }
 
+    /**
+     * 根据姓名查询读者
+     * */
+    @RequestMapping("/inquireUserByName")
+    @ResponseBody
+    public ModelAndView inquireUserByName(@RequestBody User user, HttpSession session) {
 
+        ModelAndView modelAndView = new ModelAndView();
+        User user1 = userService.getUserByName(user.getName());
+
+        if (user1 != null) {
+            System.out.println("inquireUserByName success");
+
+            modelAndView.addObject("inquireUserByName", user1);
+
+        } else {
+            System.out.println("inquireUserByName failure");
+
+        }
+        //modelAndView.setViewName("page/m-getReader");
+        return modelAndView;
+    }
 }
 

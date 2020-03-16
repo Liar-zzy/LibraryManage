@@ -147,4 +147,31 @@ public class BookController {
         return modelAndView;
     }
 
+    /**
+     * 根据书名查询图书
+     * */
+    @RequestMapping("/inquireBookByName")
+    @ResponseBody
+    public Map<String, String> inquireBookByName(@RequestBody Book book, HttpSession session) {
+
+        List<Book> books = bookService.getBookByName(book.getName());
+
+        Map<String, String> map = new HashMap<>();
+
+        if (books != null) {
+
+            System.out.println("inquireBookByName success");
+
+            session.setAttribute("booksByName", books);
+
+            map.put("booksByName", "success");
+            //modelAndView.addObject("SESSION_BOOK", bookList);
+
+        } else {
+            System.out.println("inquireBookByName failure");
+            map.put("booksByName", "failure");
+        }
+
+        return map;
+    }
 }
