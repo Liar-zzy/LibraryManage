@@ -18,7 +18,7 @@ public class Book {
 
     private String registerTime;
 
-    private boolean lendState;
+    private String lendState;
 
     private String isbn;
 
@@ -94,11 +94,11 @@ public class Book {
         this.registerTime = registerTime;
     }
 
-    public boolean isLendState() {
+    public String getLendState() {
         return lendState;
     }
 
-    public void setLendState(boolean lendState) {
+    public void setLendState(String lendState) {
         this.lendState = lendState;
     }
 

@@ -37,7 +37,7 @@ public class BookController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         book.setPublishTime((sdf.format(date)));
         book.setRegisterTime((sdf.format(date)));
-        book.setLendState(false);
+        book.setLendState("0");
 
         boolean success;
         Map<String, String > map = new HashMap<>();

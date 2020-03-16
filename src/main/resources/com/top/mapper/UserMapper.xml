@@ -52,4 +52,8 @@
         select * from user where role = '0'
     </select>
 
+    <select id="getUserByName" resultType="com.top.pojo.User">
+        select * from  user where name = #{name}
+    </select>
+
 </mapper>

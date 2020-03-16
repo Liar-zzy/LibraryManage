@@ -34,4 +34,8 @@ public interface BookMapper {
      * */
     List<Book> getAllBook();
 
+    /**
+     * 按书名查书
+     * */
+    List<Book> getBookByName(@Param("bookName") String name);
 }

@@ -33,5 +33,10 @@ public interface UserMapper {
      * 查询所有读者
      * */
     List<User> getAllUser();
+
+    /**
+     * 按名字查人
+     * */
+    User getUserByName(@Param("name") String name);
 }
 

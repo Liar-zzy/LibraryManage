@@ -30,4 +30,9 @@ public interface BookService {
      * 查询所有图书
      * */
     List<Book>  GetAllBook();
+
+    /**
+     * 按书名查书
+     * */
+    List<Book> getBookByName(String name);
 }

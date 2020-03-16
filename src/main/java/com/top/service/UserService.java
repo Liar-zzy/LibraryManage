@@ -29,8 +29,11 @@ public interface UserService {
     /**
      * 查询所有用户
      * */
-
     List<User> getAllUser();
-    
+
+    /**
+     * 按名字查人
+     * */
+    User getUserByName(String name);
 }
 
