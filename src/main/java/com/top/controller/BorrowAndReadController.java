@@ -59,7 +59,7 @@ public class BorrowAndReadController {
              * */
             System.out.println("add BorrowAndRead success");
             Book book = bookService.GetBook(borrowAndRead.getBorrowBookId());
-            book.setLendState(true);
+            book.setLendState("1");
             bookService.UpdateBook(book);
         }
         else {
@@ -92,7 +92,7 @@ public class BorrowAndReadController {
              * 归还成功将借阅状态置0
              * */
             Book book = bookService.GetBook(borrowAndRead.getBorrowBookId());
-            book.setLendState(false);
+            book.setLendState("0");
             bookService.UpdateBook(book);
             System.out.println("delete borrowAndRead success");
         }
